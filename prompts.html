@@ -81,9 +81,7 @@
       color: var(--text-muted);
     }
 
-    .prompt-meta-item strong {
-      color: var(--text);
-    }
+    .prompt-meta-item strong { color: var(--text); }
 
     .prompt-status {
       display: inline-flex;
@@ -96,6 +94,8 @@
       padding: 0.3rem 0.9rem;
       border-radius: 100px;
     }
+
+    .prompt-status::before { content: '●'; font-size: 0.55rem; }
 
     .prompt-status.open {
       background: rgba(107, 53, 178, 0.25);
@@ -115,11 +115,6 @@
       border: 1px solid rgba(140, 103, 55, 0.35);
     }
 
-    .prompt-status::before {
-      content: '●';
-      font-size: 0.55rem;
-    }
-
     /* Archive */
     .archive-grid {
       display: grid;
@@ -134,7 +129,6 @@
       border-radius: var(--radius);
       padding: 1.75rem;
       transition: border-color var(--transition), transform var(--transition);
-      cursor: default;
     }
 
     .archive-card:hover {
@@ -165,17 +159,43 @@
       font-size: 1.1rem;
       color: var(--text);
       line-height: 1.4;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
 
-    .archive-winner {
-      font-size: 0.82rem;
+    /* Winners */
+    .archive-winners {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 1rem;
+    }
+
+    .winner-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .winner-place {
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      min-width: 28px;
+      flex-shrink: 0;
+    }
+
+    .winner-row:nth-child(1) .winner-place { color: var(--gold-light); }
+    .winner-row:nth-child(2) .winner-place { color: var(--text-muted); }
+    .winner-row:nth-child(3) .winner-place { color: #a0785a; }
+
+    .winner-name {
       color: var(--text-muted);
     }
 
-    .archive-winner strong {
-      color: var(--purple-light);
-    }
+    .winner-name strong { color: var(--purple-light); }
 
     .empty-archive {
       text-align: center;
@@ -186,20 +206,11 @@
       margin-top: 2.5rem;
     }
 
-    .empty-archive p {
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
-    }
+    .empty-archive p { font-size: 0.95rem; margin-top: 0.5rem; }
 
     @media (max-width: 640px) {
-      .prompt-current {
-        padding: 2rem 1.5rem;
-      }
-      .prompt-meta {
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: flex-start;
-      }
+      .prompt-current { padding: 2rem 1.5rem; }
+      .prompt-meta { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
     }
   </style>
 </head>
@@ -233,95 +244,8 @@
     </div>
   </header>
 
-  <!-- CURRENT PROMPT -->
-  <section class="section">
-    <div class="container" style="max-width: 860px;">
-
-      <p class="section-label">Current Cycle</p>
-      <h2 class="section-title">This Month's Prompt</h2>
-      <div class="gold-rule"></div>
-
-      <div class="prompt-current">
-        <p class="prompt-cycle-label">July 2026 &mdash; Cycle 01</p>
-        <p class="prompt-month">July 7 – July 14, 2026</p>
-
-        <p class="prompt-text">
-          Two people share a meal for the last time — but only one of them knows it.
-        </p>
-
-        <div class="prompt-meta">
-          <span class="prompt-status open">Open</span>
-          <div class="prompt-meta-item">
-            <span>📅</span>
-            <span>Prompt released: <strong>July 7, 2026 at 7am ET</strong></span>
-          </div>
-          <div class="prompt-meta-item">
-            <span>⏰</span>
-            <span>Submissions close: <strong>July 14, 2026 at 7pm ET</strong></span>
-          </div>
-        </div>
-
-        <a href="submit.html" class="btn btn-primary">Submit Your Script</a>
-      </div>
-
-      <div class="prize-callout" style="margin-top: 1.5rem;">
-        <strong>New to 7 in 7?</strong> Read the <a href="rules.html" style="color: var(--purple-light);">rules</a> before you write. Scripts must be exactly 7 pages, in PDF format, in standard screenplay format.
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PROMPT ARCHIVE -->
-  <section class="section section-alt">
-    <div class="container" style="max-width: 860px;">
-
-      <p class="section-label">Archive</p>
-      <h2 class="section-title">Previous Prompts</h2>
-      <div class="gold-rule"></div>
-      <p style="color: var(--text-muted);">Every past prompt lives here after its cycle closes. Winners are noted once results are announced.</p>
-
-      <!-- Placeholder empty state — replace with archive cards as cycles complete -->
-      <div class="empty-archive">
-        <span style="font-size: 2rem;">📂</span>
-        <p>Previous prompts will appear here after each cycle closes.</p>
-        <p style="margin-top: 0.35rem; font-size: 0.85rem;">Check back after July 22nd for the first archived entry.</p>
-      </div>
-
-      <!--
-        ARCHIVE CARD TEMPLATE — uncomment and duplicate as cycles complete:
-
-        <div class="archive-grid">
-          <div class="archive-card">
-            <div class="archive-card-header">
-              <span class="archive-month">June 2026 &mdash; Cycle 00</span>
-              <span class="prompt-status closed">Closed</span>
-            </div>
-            <p class="archive-prompt">"Two people share a meal for the last time — but only one of them knows it."</p>
-            <p class="archive-winner">Winner: <strong>Script Title</strong> by Writer Name</p>
-          </div>
-        </div>
-      -->
-
-    </div>
-  </section>
-
-  <!-- UPCOMING -->
-  <section class="section">
-    <div class="container" style="max-width: 860px;">
-      <div class="text-center">
-        <p class="section-label">Next Cycle</p>
-        <h2 class="section-title">August 2026</h2>
-        <div class="gold-rule"></div>
-        <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 2rem;">
-          The August prompt will be revealed at 7am ET on August 7th. Subscribe annually to secure your spot in every cycle automatically.
-        </p>
-        <div class="btn-group">
-          <a href="subscribe.html" class="btn btn-primary">Subscribe for All 12 Cycles</a>
-          <a href="submit.html" class="btn btn-ghost">Enter This Month Only</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Dynamic content rendered by prompts.js -->
+  <main id="prompts-root"></main>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -344,6 +268,8 @@
     </div>
   </footer>
 
+  <script src="js/prompts-data.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/prompts.js"></script>
 </body>
 </html>
