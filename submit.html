@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Your Script — 7 in 7</title>
+  <meta name="description" content="Submit your script to the 7 in 7 monthly short film screenwriting competition." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="submit.html" class="nav-cta">Submit</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-content">
+      <p class="section-label">Enter the Competition</p>
+      <h1>Submit Your Script</h1>
+      <div class="gold-rule" style="margin: 1rem auto 0;"></div>
+      <p>7 pages. PDF. Before 7pm ET on the 14th.</p>
+    </div>
+  </header>
+
+  <!-- SUBMIT FORM -->
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+
+      <div class="submit-notice">
+        <span style="flex-shrink:0; font-size:1rem;">ℹ</span>
+        <span>
+          <strong>How submission works:</strong> A unique, single-use submission link is issued automatically to your email upon payment confirmation. This page demonstrates the submission experience. Full functionality will be available at launch.
+        </span>
+      </div>
+
+      <!-- Checklist before you submit -->
+      <div class="card" style="margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1rem; color: var(--text); margin-bottom: 1rem;">Before you submit, confirm your script:</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <div style="display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.9rem; color: var(--text-muted);">
+            <span style="color: var(--gold); flex-shrink:0; font-weight: 700;">▸</span>
+            Is exactly 7 pages (not counting any title page)
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.9rem; color: var(--text-muted);">
+            <span style="color: var(--gold); flex-shrink:0; font-weight: 700;">▸</span>
+            Is saved as a PDF and opens without errors
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.9rem; color: var(--text-muted);">
+            <span style="color: var(--gold); flex-shrink:0; font-weight: 700;">▸</span>
+            Uses standard screenplay format (sluglines, action lines, dialogue blocks)
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.9rem; color: var(--text-muted);">
+            <span style="color: var(--gold); flex-shrink:0; font-weight: 700;">▸</span>
+            Engages with the monthly prompt in a meaningful way
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.9rem; color: var(--text-muted);">
+            <span style="color: var(--gold); flex-shrink:0; font-weight: 700;">▸</span>
+            Is original work written by you during the 7-day writing window
+          </div>
+        </div>
+      </div>
+
+      <!-- Submission Form -->
+      <div class="submit-form">
+        <h2 style="font-size: 1.3rem; color: var(--purple-light); margin-bottom: 1.75rem;">Your Information</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" placeholder="Jane" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" placeholder="Smith" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@example.com" autocomplete="email" />
+        </div>
+
+        <div style="border-top: 1px solid var(--card-border); margin: 1.5rem 0;"></div>
+        <h2 style="font-size: 1.3rem; color: var(--purple-light); margin-bottom: 1.75rem;">Your Script</h2>
+
+        <div class="form-group">
+          <label for="script-title">Script Title</label>
+          <input type="text" id="script-title" placeholder="Untitled Short" />
+        </div>
+
+        <div class="form-group">
+          <label for="cycle">Competition Cycle</label>
+          <select id="cycle">
+            <option value="" disabled selected>Select a cycle</option>
+            <option value="2026-07">July 2026</option>
+            <option value="2026-08">August 2026</option>
+            <option value="2026-09">September 2026</option>
+            <option value="2026-10">October 2026</option>
+            <option value="2026-11">November 2026</option>
+            <option value="2026-12">December 2026</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Script File (PDF only)</label>
+          <div class="file-input-wrap">
+            <label for="script-file" class="file-label">
+              <span>📎</span> Choose File
+            </label>
+            <input type="file" id="script-file" accept=".pdf" />
+            <span class="file-name-display">No file chosen</span>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid var(--card-border); margin: 1.5rem 0;"></div>
+        <h2 style="font-size: 1.3rem; color: var(--purple-light); margin-bottom: 1.25rem;">Confirm &amp; Submit</h2>
+
+        <div class="form-check">
+          <input type="checkbox" id="agree-terms" />
+          <label for="agree-terms">I have read and agree to the <a href="terms.html">Terms &amp; Conditions</a></label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="agree-original" />
+          <label for="agree-original">This script is my original work, written solely by me during the competition window. It does not contain AI-generated content or previously published material.</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="agree-format" />
+          <label for="agree-format">My script is exactly 7 pages (excluding any title page) and is in PDF format.</label>
+        </div>
+
+        <div class="form-footer">
+          <p class="form-price-note">Entry fee: <strong>$25.00 USD</strong> per cycle</p>
+          <button class="btn-submit" type="button" disabled title="Submission not yet open">Pay &amp; Submit →</button>
+        </div>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.8rem; text-align: center; margin-top: 1.5rem;">
+        Payment processing by Stripe. Prizes paid via Tremendous virtual Visa card. See <a href="terms.html">Terms &amp; Conditions</a> for tax and prize details.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">7 <span>in</span> 7</div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="submit.html">Submit</a></li>
+      </ul>
+      <div class="footer-powered">
+        <span>⚙</span>
+        Powered by <strong>Gopher the Gold Productions</strong>
+      </div>
+      <p class="footer-copy">&copy; 2026 7 in 7. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
