@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Podcast — 7 in 7</title>
+  <meta name="description" content="Listen to performed table reads of winning scripts from the 7 in 7 monthly screenwriting competition." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Podcast hero */
+    .podcast-hero {
+      background: linear-gradient(135deg, rgba(61, 39, 133, 0.45) 0%, rgba(107, 53, 178, 0.2) 100%);
+      border: 1px solid var(--purple-mid);
+      border-radius: var(--radius);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .podcast-cover {
+      aspect-ratio: 1;
+      background: var(--purple-deep);
+      border: 1px solid var(--purple-mid);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .podcast-cover-icon { font-size: 2.5rem; }
+
+    .podcast-cover-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--purple-light);
+      line-height: 1.2;
+    }
+
+    .podcast-hero-text h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .podcast-hero-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    /* Platform subscribe buttons */
+    .platforms-section {
+      margin-bottom: 0;
+    }
+
+    .platforms-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .platforms-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .platform-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: border-color var(--transition), color var(--transition);
+      text-decoration: none;
+    }
+
+    .platform-btn:hover {
+      border-color: var(--purple-light);
+      color: var(--text);
+    }
+
+    .platform-btn[href=""] {
+      opacity: 0.45;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .platform-icon { font-size: 1rem; }
+
+    /* Episode list */
+    .episodes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .episode-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: border-color var(--transition);
+    }
+
+    .episode-card:hover { border-color: var(--purple-mid); }
+
+    .episode-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .episode-number {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--gold);
+      background: rgba(140, 103, 55, 0.12);
+      border: 1px solid rgba(140, 103, 55, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+
+    .episode-cycle {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .episode-title {
+      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+      color: var(--purple-light);
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .episode-writer {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .episode-writer strong { color: var(--text); }
+
+    .episode-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .episode-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .episode-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    /* Empty state */
+    .empty-episodes {
+      text-align: center;
+      padding: 4rem 2rem;
+      border: 1px dashed var(--card-border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+    }
+
+    .empty-episodes p { font-size: 0.95rem; margin-top: 0.5rem; }
+
+    @media (max-width: 640px) {
+      .podcast-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+
+      .podcast-cover {
+        max-width: 120px;
+        margin: 0 auto;
+      }
+
+      .platforms-row { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="subscribe.html">Subscribe</a></li>
+        <li><a href="submit.html" class="nav-cta">Submit</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-content">
+      <p class="section-label">The Podcast</p>
+      <h1>7 in 7 Podcast</h1>
+      <div class="gold-rule" style="margin: 1rem auto 0;"></div>
+      <p>Winning scripts performed live. One episode per cycle.</p>
+    </div>
+  </header>
+
+  <!-- PODCAST HERO -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container" style="max-width: 860px;">
+      <div class="podcast-hero">
+        <div class="podcast-cover" aria-hidden="true">
+          <div class="podcast-cover-icon">🎙</div>
+          <div class="podcast-cover-name">7 in 7<br>Podcast</div>
+        </div>
+        <div class="podcast-hero-text">
+          <h2>Scripts brought to life.</h2>
+          <p>
+            Each month's winning script is performed by voice actors from the Richmond film and theater community and published as a full episode. Every episode is a real, shareable artifact — the kind of thing you put in a portfolio.
+          </p>
+          <div class="platforms-section">
+            <p class="platforms-label">Listen on</p>
+            <div class="platforms-row">
+              <!-- Update href values with real URLs when the podcast goes live -->
+              <a href="" class="platform-btn" aria-label="Listen on Spotify">
+                <span class="platform-icon">🎵</span> Spotify
+              </a>
+              <a href="" class="platform-btn" aria-label="Listen on Apple Podcasts">
+                <span class="platform-icon">🎙</span> Apple Podcasts
+              </a>
+              <a href="" class="platform-btn" aria-label="Listen on Amazon Music">
+                <span class="platform-icon">🎶</span> Amazon Music
+              </a>
+              <a href="" class="platform-btn" aria-label="Listen on YouTube">
+                <span class="platform-icon">▶</span> YouTube
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic episode list rendered by episodes.js -->
+  <main id="episodes-root"></main>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-alt">
+    <div class="container" style="max-width: 860px;">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">From script to episode</h2>
+      <div class="gold-rule"></div>
+      <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 2rem;">
+        <div class="card">
+          <span class="card-icon">🏆</span>
+          <h3>A Script Wins</h3>
+          <p>The 1st place script from each monthly cycle is selected for production.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🎭</span>
+          <h3>Actors Are Cast</h3>
+          <p>Voice actors from the Richmond film and theater community are recruited and rehearse the script.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🎚</span>
+          <h3>It's Recorded</h3>
+          <p>The table read is recorded virtually via Podcastle. The winning writer is invited to participate.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">📡</span>
+          <h3>It Goes Live</h3>
+          <p>The episode is published across all major streaming platforms within 30 days of results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container" style="max-width: 860px;">
+      <div class="text-center">
+        <p class="section-label">Write for It</p>
+        <h2 class="section-title">Your script could be next.</h2>
+        <div class="gold-rule"></div>
+        <p style="color: var(--text-muted); max-width: 480px; margin: 0 auto 2rem;">
+          Enter the current cycle for $25, or subscribe annually to compete every month.
+        </p>
+        <div class="btn-group">
+          <a href="submit.html" class="btn btn-primary">Submit This Cycle</a>
+          <a href="subscribe.html" class="btn btn-ghost">Subscribe Annually</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">7 <span>in</span> 7</div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="subscribe.html">Subscribe</a></li>
+        <li><a href="submit.html">Submit</a></li>
+      </ul>
+      <div class="footer-powered">
+        <span>⚙</span>
+        Powered by <strong>Gopher the Gold Productions</strong>
+      </div>
+      <p class="footer-copy">&copy; 2026 7 in 7. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/episodes-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/episodes.js"></script>
+</body>
+</html>
