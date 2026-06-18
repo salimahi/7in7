@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annual Subscription — 7 in 7</title>
+  <meta name="description" content="Subscribe annually to 7 in 7 and enter every monthly cycle for $240/year — the equivalent of $20 per cycle." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .savings-banner {
+      background: rgba(140, 103, 55, 0.12);
+      border: 1px solid rgba(140, 103, 55, 0.4);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .savings-banner-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .savings-banner p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .savings-banner strong {
+      color: var(--gold-light);
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .compare-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      text-align: center;
+    }
+
+    .compare-card.highlight {
+      border-color: var(--purple-mid);
+      background: rgba(61, 39, 133, 0.28);
+      position: relative;
+    }
+
+    .compare-card.highlight::before {
+      content: 'YOU ARE HERE';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      background: var(--gold);
+      color: #fff;
+      padding: 0.25rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    .compare-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .compare-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .compare-per {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 0.35rem 0 1rem;
+    }
+
+    .compare-total {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--purple-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .compare-savings {
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .benefit-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(61, 39, 133, 0.3);
+      border: 1px solid var(--purple-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .benefit-text strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .benefit-text span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .subscribe-form {
+      max-width: 580px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+
+    @media (max-width: 560px) {
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+      .compare-card.highlight::before {
+        content: 'BEST VALUE';
+      }
+      .subscribe-form {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="subscribe.html">Subscribe</a></li>
+        <li><a href="submit.html" class="nav-cta">Submit</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-content">
+      <p class="section-label">Annual Subscription</p>
+      <h1>Write Every Month.</h1>
+      <div class="gold-rule" style="margin: 1rem auto 0;"></div>
+      <p>Subscribe once and enter all 12 cycles of the year — at a lower rate, with no monthly hassle.</p>
+    </div>
+  </header>
+
+  <!-- COMPARISON + BENEFITS -->
+  <section class="section section-alt">
+    <div class="container" style="max-width: 860px;">
+
+      <div class="savings-banner">
+        <span class="savings-banner-icon">💰</span>
+        <p>An annual subscription saves you <strong>$60 versus paying per cycle</strong> — the equivalent of getting two and a half months free.</p>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <p class="compare-label">Pay Per Cycle</p>
+          <p class="compare-price">$25</p>
+          <p class="compare-per">per submission</p>
+          <p class="compare-total">$300 / year</p>
+          <p class="compare-savings">&nbsp;</p>
+        </div>
+        <div class="compare-card highlight">
+          <p class="compare-label">Annual Subscription</p>
+          <p class="compare-price">$20</p>
+          <p class="compare-per">per cycle &mdash; billed as $240/year</p>
+          <p class="compare-total">$240 / year</p>
+          <p class="compare-savings">Save $60 &mdash; 2 cycles free</p>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="font-size: 1.4rem;">What you get</h2>
+      <div class="gold-rule"></div>
+
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <div class="benefit-icon">📅</div>
+          <div class="benefit-text">
+            <strong>All 12 monthly cycles, automatically</strong>
+            <span>Your unique submission link is issued each month on payment confirmation — no re-entering payment details.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">📝</div>
+          <div class="benefit-text">
+            <strong>Written feedback every cycle</strong>
+            <span>Every submission — all 12 across the year — receives substantive written feedback scored across 7 categories.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Eligible for prizes every cycle</strong>
+            <span>Full prize eligibility — $100 + podcast table read, $50, and $25 — in every cycle you enter.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🎙</div>
+          <div class="benefit-text">
+            <strong>12 shots at the table read</strong>
+            <span>More cycles means more chances to have your script produced as a podcast episode and added to your portfolio.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">💸</div>
+          <div class="benefit-text">
+            <strong>$60 in savings</strong>
+            <span>$240 billed upfront versus $300 if you paid $25 per cycle all year.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUBSCRIPTION FORM -->
+  <section class="section">
+    <div class="container" style="max-width: 680px;">
+
+      <p class="section-label">Subscribe</p>
+      <h2 class="section-title">Get started</h2>
+      <div class="gold-rule"></div>
+
+      <div class="submit-notice" style="margin-bottom: 2rem;">
+        <span style="flex-shrink:0; font-size:1rem;">ℹ</span>
+        <span>
+          <strong>Coming soon:</strong> Annual subscription payment will be available at launch via Stripe. Enter your details below and we'll notify you when subscriptions open.
+        </span>
+      </div>
+
+      <div class="subscribe-form">
+        <h3 style="font-size: 1.1rem; color: var(--purple-light); margin-bottom: 1.75rem;">Your Information</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sub-first">First Name</label>
+            <input type="text" id="sub-first" placeholder="Jane" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="sub-last">Last Name</label>
+            <input type="text" id="sub-last" placeholder="Smith" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sub-email">Email Address</label>
+          <input type="email" id="sub-email" placeholder="jane@example.com" autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="sub-country">Country of Residence</label>
+          <select id="sub-country">
+            <option value="" disabled selected>Select your country</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="GB">United Kingdom</option>
+            <option value="AU">Australia</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div style="border-top: 1px solid var(--card-border); margin: 1.5rem 0;"></div>
+
+        <div style="background: rgba(61,39,133,0.15); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.9rem; color: var(--text);">Annual Subscription &mdash; All 12 Cycles</span>
+            <span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--purple-light);">$240.00</span>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Billed once. Covers every monthly cycle through the end of the subscription year. Non-refundable.</p>
+        </div>
+
+        <div class="form-check" style="margin-bottom: 0.75rem;">
+          <input type="checkbox" id="sub-terms" />
+          <label for="sub-terms">I have read and agree to the <a href="terms.html">Terms &amp; Conditions</a></label>
+        </div>
+        <div class="form-check" style="margin-bottom: 1.5rem;">
+          <input type="checkbox" id="sub-ip" />
+          <label for="sub-ip">I understand that my scripts remain my intellectual property. By submitting each cycle, I grant 7 in 7 a limited, non-exclusive license to share excerpts for feedback and to potentially produce submitted scripts as podcast episodes. No other rights are transferred.</label>
+        </div>
+
+        <button class="btn-submit" type="button" disabled title="Subscriptions not yet open" style="width: 100%; opacity: 0.7;">
+          Subscribe &mdash; $240 / year →
+        </button>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
+          Payment processing by Stripe. You'll receive a unique submission link each month via email. See <a href="terms.html">Terms &amp; Conditions</a> for full details.
+        </p>
+      </div>
+
+      <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
+        Just want to try a single cycle? <a href="submit.html">Submit for $25 →</a>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">7 <span>in</span> 7</div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="subscribe.html">Subscribe</a></li>
+        <li><a href="submit.html">Submit</a></li>
+      </ul>
+      <div class="footer-powered">
+        <span>⚙</span>
+        Powered by <strong>Gopher the Gold Productions</strong>
+      </div>
+      <p class="footer-copy">&copy; 2026 7 in 7. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

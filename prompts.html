@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Prompts — 7 in 7</title>
+  <meta name="description" content="The current month's writing prompt and an archive of previous 7 in 7 prompts." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Prompts-specific styles */
+    .prompt-current {
+      background: linear-gradient(135deg, rgba(61, 39, 133, 0.4) 0%, rgba(107, 53, 178, 0.2) 100%);
+      border: 1px solid var(--purple-mid);
+      border-radius: var(--radius);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prompt-current::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(107, 53, 178, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .prompt-cycle-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .prompt-month {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .prompt-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2.6rem);
+      font-style: italic;
+      color: var(--purple-light);
+      line-height: 1.3;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .prompt-text::before {
+      content: '\201C';
+      font-size: 5rem;
+      color: rgba(107, 53, 178, 0.3);
+      position: absolute;
+      top: -1.5rem;
+      left: -1rem;
+      line-height: 1;
+      font-style: normal;
+      z-index: -1;
+    }
+
+    .prompt-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .prompt-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .prompt-meta-item strong {
+      color: var(--text);
+    }
+
+    .prompt-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    .prompt-status.open {
+      background: rgba(107, 53, 178, 0.25);
+      color: var(--purple-light);
+      border: 1px solid var(--purple-mid);
+    }
+
+    .prompt-status.closed {
+      background: rgba(168, 158, 192, 0.1);
+      color: var(--text-muted);
+      border: 1px solid rgba(168, 158, 192, 0.2);
+    }
+
+    .prompt-status.upcoming {
+      background: rgba(140, 103, 55, 0.15);
+      color: var(--gold-light);
+      border: 1px solid rgba(140, 103, 55, 0.35);
+    }
+
+    .prompt-status::before {
+      content: '●';
+      font-size: 0.55rem;
+    }
+
+    /* Archive */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .archive-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border-color var(--transition), transform var(--transition);
+      cursor: default;
+    }
+
+    .archive-card:hover {
+      border-color: var(--purple-mid);
+      transform: translateY(-2px);
+    }
+
+    .archive-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .archive-month {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .archive-prompt {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .archive-winner {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .archive-winner strong {
+      color: var(--purple-light);
+    }
+
+    .empty-archive {
+      text-align: center;
+      padding: 3.5rem 2rem;
+      border: 1px dashed var(--card-border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      margin-top: 2.5rem;
+    }
+
+    .empty-archive p {
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .prompt-current {
+        padding: 2rem 1.5rem;
+      }
+      .prompt-meta {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="subscribe.html">Subscribe</a></li>
+        <li><a href="submit.html" class="nav-cta">Submit</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-content">
+      <p class="section-label">Writing Prompts</p>
+      <h1>Monthly Prompts</h1>
+      <div class="gold-rule" style="margin: 1rem auto 0;"></div>
+      <p>A new prompt drops on the 7th of each month at 7am ET. You have 7 days.</p>
+    </div>
+  </header>
+
+  <!-- CURRENT PROMPT -->
+  <section class="section">
+    <div class="container" style="max-width: 860px;">
+
+      <p class="section-label">Current Cycle</p>
+      <h2 class="section-title">This Month's Prompt</h2>
+      <div class="gold-rule"></div>
+
+      <div class="prompt-current">
+        <p class="prompt-cycle-label">July 2026 &mdash; Cycle 01</p>
+        <p class="prompt-month">July 7 – July 14, 2026</p>
+
+        <p class="prompt-text">
+          Two people share a meal for the last time — but only one of them knows it.
+        </p>
+
+        <div class="prompt-meta">
+          <span class="prompt-status open">Open</span>
+          <div class="prompt-meta-item">
+            <span>📅</span>
+            <span>Prompt released: <strong>July 7, 2026 at 7am ET</strong></span>
+          </div>
+          <div class="prompt-meta-item">
+            <span>⏰</span>
+            <span>Submissions close: <strong>July 14, 2026 at 7pm ET</strong></span>
+          </div>
+        </div>
+
+        <a href="submit.html" class="btn btn-primary">Submit Your Script</a>
+      </div>
+
+      <div class="prize-callout" style="margin-top: 1.5rem;">
+        <strong>New to 7 in 7?</strong> Read the <a href="rules.html" style="color: var(--purple-light);">rules</a> before you write. Scripts must be exactly 7 pages, in PDF format, in standard screenplay format.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROMPT ARCHIVE -->
+  <section class="section section-alt">
+    <div class="container" style="max-width: 860px;">
+
+      <p class="section-label">Archive</p>
+      <h2 class="section-title">Previous Prompts</h2>
+      <div class="gold-rule"></div>
+      <p style="color: var(--text-muted);">Every past prompt lives here after its cycle closes. Winners are noted once results are announced.</p>
+
+      <!-- Placeholder empty state — replace with archive cards as cycles complete -->
+      <div class="empty-archive">
+        <span style="font-size: 2rem;">📂</span>
+        <p>Previous prompts will appear here after each cycle closes.</p>
+        <p style="margin-top: 0.35rem; font-size: 0.85rem;">Check back after July 22nd for the first archived entry.</p>
+      </div>
+
+      <!--
+        ARCHIVE CARD TEMPLATE — uncomment and duplicate as cycles complete:
+
+        <div class="archive-grid">
+          <div class="archive-card">
+            <div class="archive-card-header">
+              <span class="archive-month">June 2026 &mdash; Cycle 00</span>
+              <span class="prompt-status closed">Closed</span>
+            </div>
+            <p class="archive-prompt">"Two people share a meal for the last time — but only one of them knows it."</p>
+            <p class="archive-winner">Winner: <strong>Script Title</strong> by Writer Name</p>
+          </div>
+        </div>
+      -->
+
+    </div>
+  </section>
+
+  <!-- UPCOMING -->
+  <section class="section">
+    <div class="container" style="max-width: 860px;">
+      <div class="text-center">
+        <p class="section-label">Next Cycle</p>
+        <h2 class="section-title">August 2026</h2>
+        <div class="gold-rule"></div>
+        <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 2rem;">
+          The August prompt will be revealed at 7am ET on August 7th. Subscribe annually to secure your spot in every cycle automatically.
+        </p>
+        <div class="btn-group">
+          <a href="subscribe.html" class="btn btn-primary">Subscribe for All 12 Cycles</a>
+          <a href="submit.html" class="btn btn-ghost">Enter This Month Only</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">7 <span>in</span> 7</div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="subscribe.html">Subscribe</a></li>
+        <li><a href="submit.html">Submit</a></li>
+      </ul>
+      <div class="footer-powered">
+        <span>⚙</span>
+        Powered by <strong>Gopher the Gold Productions</strong>
+      </div>
+      <p class="footer-copy">&copy; 2026 7 in 7. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
