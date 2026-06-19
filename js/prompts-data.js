@@ -8,8 +8,8 @@
   prompts in browser source. That's an acceptable tradeoff for this competition.
 
   TIMEZONE GUIDE (all revealAt / deadline times are UTC):
-    Summer (EDT, Apr–Oct): 7am ET  = 11:00 UTC  |  7pm ET  = 23:00 UTC
-    Winter (EST, Nov–Mar): 7am ET  = 12:00 UTC  |  7pm ET  = 00:00 UTC (next day)
+    Summer (EDT, Apr–Oct): 7pm ET  = 23:00 UTC
+    Winter (EST, Nov–Mar): 7pm ET  = 00:00 UTC (next day)
 
   TO ADD A NEW CYCLE:
     1. Copy the template below and fill in the fields.
@@ -37,7 +37,7 @@ const PROMPTS = [
   {
     cycle:    'July 2026 — Cycle 01',
     month:    'July 2026',
-    revealAt: '2026-07-07T11:00:00Z',   // 7am EDT
+    revealAt: '2026-07-07T23:00:00Z',   // 7pm EDT
     deadline: '2026-07-14T23:00:00Z',   // 7pm EDT
     text:     'Two people share a meal for the last time — but only one of them knows it.',
     winners: {

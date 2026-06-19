@@ -101,10 +101,10 @@
                   <span>Submissions close: <strong>${fmtDeadline(active.deadline)}</strong></span>
                 </div>
               </div>
-              <a href="submit.html" class="btn btn-primary">Submit Your Script</a>
+              <a href="register.html" class="btn btn-primary">Register to Enter</a>
             </div>
             <div class="prize-callout" style="margin-top:1.5rem;">
-              <strong>New to 7 in 7?</strong> Read the <a href="rules.html" style="color:var(--purple-light);">rules</a> before you write. Scripts must be exactly 7 pages, in PDF format, in standard screenplay format.
+              <strong>New to 7 in 7?</strong> Read the <a href="rules.html" style="color:var(--purple-light);">rules</a> before you write. Scripts must be no more than 7 pages, in PDF format, in standard screenplay format, with no author name in the document.
             </div>
           </div>
         </section>`;
@@ -127,8 +127,8 @@
                 Subscribe now to ensure you receive your submission link automatically the moment the cycle opens.
               </p>
               <div class="btn-group" style="justify-content:center;">
-                <a href="subscribe.html" class="btn btn-primary">Subscribe for All 12 Cycles</a>
-                <a href="submit.html" class="btn btn-ghost">Enter This Month Only</a>
+                <a href="register.html" class="btn btn-primary">Register for All 12 Cycles</a>
+                <a href="register.html" class="btn btn-ghost">Register This Cycle</a>
               </div>
             </div>
           </div>
@@ -229,10 +229,10 @@
             <p class="section-label">Next Cycle</p>
             <h2 class="section-title">${upcoming ? fmt(upcoming.revealAt, { month: 'long', year: 'numeric' }) : 'Coming Soon'}</h2>
             <div class="gold-rule"></div>
-            <p style="color:var(--text-muted); max-width:500px; margin:0 auto 2rem;">${teaser} Subscribe annually to secure your spot in every cycle automatically.</p>
+            <p style="color:var(--text-muted); max-width:500px; margin:0 auto 2rem;">${teaser} Register annually to secure your spot in every cycle automatically.</p>
             <div class="btn-group">
-              <a href="subscribe.html" class="btn btn-primary">Subscribe for All 12 Cycles</a>
-              <a href="submit.html" class="btn btn-ghost">Enter This Month Only</a>
+              <a href="register.html" class="btn btn-primary">Register for All 12 Cycles</a>
+              <a href="register.html" class="btn btn-ghost">Register This Cycle</a>
             </div>
           </div>
         </div>

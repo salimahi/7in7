@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — 7 in 7</title>
+  <meta name="description" content="Register for the 7 in 7 monthly short film screenwriting competition. Pay once, and at 7pm ET on the 7th you'll receive the prompt and your unique submission link together in one email." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .register-option-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .register-option {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      position: relative;
+      transition: border-color var(--transition);
+    }
+
+    .register-option.featured {
+      border-color: var(--purple-mid);
+      background: rgba(61, 39, 133, 0.18);
+    }
+
+    .register-option.featured::before {
+      content: 'BEST VALUE';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      background: var(--gold);
+      color: #fff;
+      padding: 0.25rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    .option-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .option-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .option-per {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 0.35rem 0 1rem;
+    }
+
+    .option-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .option-savings {
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      font-weight: 500;
+      margin-top: 0.75rem;
+    }
+
+    .how-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0 0;
+    }
+
+    .how-step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .how-step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(61, 39, 133, 0.35);
+      border: 1px solid var(--purple-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--purple-light);
+      flex-shrink: 0;
+    }
+
+    .how-step-body strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .how-step-body span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .register-form {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+
+    @media (max-width: 560px) {
+      .register-option-grid { grid-template-columns: 1fr; }
+      .register-form { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="register.html" class="nav-cta">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-content">
+      <p class="section-label">Enter the Competition</p>
+      <h1>Register</h1>
+      <div class="gold-rule" style="margin: 1rem auto 0;"></div>
+      <p>Register once. At 7pm ET on the 7th, your prompt and unique submission link arrive together — in one email.</p>
+    </div>
+  </header>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-alt">
+    <div class="container" style="max-width: 860px;">
+      <p class="section-label">The Process</p>
+      <h2 class="section-title">How it works</h2>
+      <div class="gold-rule"></div>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">1</div>
+          <div class="how-step-body">
+            <strong>Register below</strong>
+            <span>Choose your plan — single cycle ($25) or all 12 cycles ($240/year) — fill in your details, and complete payment.</span>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">2</div>
+          <div class="how-step-body">
+            <strong>Prompt + link delivered at 7pm ET on the 7th</strong>
+            <span>On the 7th of the competition month, at exactly 7pm ET, you'll receive one email containing the writing prompt and your unique, single-use submission link.</span>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">3</div>
+          <div class="how-step-body">
+            <strong>Write your script — 7 days</strong>
+            <span>You have until 7pm ET on the 14th. Write a script of up to 7 pages (fewer pages are allowed) in standard screenplay format. Your PDF must contain no identifying information — the title page should include the script title only, with no author name.</span>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">4</div>
+          <div class="how-step-body">
+            <strong>Submit via your unique link</strong>
+            <span>Upload your PDF through the link in your email before the deadline. The link is single-use and non-transferable.</span>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">5</div>
+          <div class="how-step-body">
+            <strong>Feedback &amp; results by the 22nd</strong>
+            <span>Every entrant receives written feedback scored across 7 categories. Winners are announced and prizes distributed.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN + FORM -->
+  <section class="section">
+    <div class="container" style="max-width: 680px;">
+
+      <p class="section-label">Registration</p>
+      <h2 class="section-title">Choose your plan</h2>
+      <div class="gold-rule"></div>
+
+      <div class="submit-notice" style="margin-bottom: 2rem;">
+        <span style="flex-shrink:0; font-size:1rem;">ℹ</span>
+        <span>
+          <strong>Coming soon:</strong> Registration and payment will be available at launch via Stripe. Enter your details below and we'll notify you when registration opens.
+        </span>
+      </div>
+
+      <div class="register-option-grid">
+        <div class="register-option">
+          <p class="option-label">Single Cycle</p>
+          <p class="option-price">$25</p>
+          <p class="option-per">per cycle</p>
+          <p class="option-desc">Enter one month. Receive your prompt and submission link at 7pm ET on the 7th.</p>
+        </div>
+        <div class="register-option featured">
+          <p class="option-label">Annual — All 12 Cycles</p>
+          <p class="option-price">$240</p>
+          <p class="option-per">billed once — $20 per cycle</p>
+          <p class="option-desc">Enter every monthly cycle for a full year. Prompt and link delivered automatically each month at 7pm ET on the 7th.</p>
+          <p class="option-savings">Save $60 — 2 cycles free</p>
+        </div>
+      </div>
+
+      <div class="register-form">
+        <h3 style="font-size: 1.1rem; color: var(--purple-light); margin-bottom: 1.75rem;">Your Information</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-first">First Name</label>
+            <input type="text" id="reg-first" placeholder="Jane" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="reg-last">Last Name</label>
+            <input type="text" id="reg-last" placeholder="Smith" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" placeholder="jane@example.com" autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="reg-country">Country of Residence</label>
+          <select id="reg-country">
+            <option value="" disabled selected>Select your country</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="GB">United Kingdom</option>
+            <option value="AU">Australia</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div style="border-top: 1px solid var(--card-border); margin: 1.5rem 0;"></div>
+
+        <div style="background: rgba(61,39,133,0.15); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.9rem; color: var(--text);">Single Cycle Entry</span>
+            <span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--purple-light);">$25.00</span>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">One-time payment. Prompt and submission link delivered at 7pm ET on the 7th. Non-refundable.</p>
+        </div>
+
+        <div class="form-check" style="margin-bottom: 0.75rem;">
+          <input type="checkbox" id="reg-terms" />
+          <label for="reg-terms">I have read and agree to the <a href="terms.html">Terms &amp; Conditions</a></label>
+        </div>
+        <div class="form-check" style="margin-bottom: 0.75rem;">
+          <input type="checkbox" id="reg-original" />
+          <label for="reg-original">My script will be my original work, written solely by me during the 7-day competition window. It will not contain AI-generated content or previously published material.</label>
+        </div>
+        <div class="form-check" style="margin-bottom: 0.75rem;">
+          <input type="checkbox" id="reg-anon" />
+          <label for="reg-anon">I understand my submission PDF must contain no identifying information. The title page will include the script title only — no author name.</label>
+        </div>
+        <div class="form-check" style="margin-bottom: 1.5rem;">
+          <input type="checkbox" id="reg-ip" />
+          <label for="reg-ip">I understand that my script remains my intellectual property. By submitting, I grant 7 in 7 a limited, non-exclusive license to share excerpts for feedback purposes and to potentially produce my script as a table read podcast episode. No other rights are transferred.</label>
+        </div>
+
+        <button class="btn-submit" type="button" disabled title="Registration not yet open" style="width: 100%; opacity: 0.7;">
+          Register →
+        </button>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
+          Payment processing by Stripe. Your prompt and submission link will be emailed at 7pm ET on the 7th. See <a href="terms.html">Terms &amp; Conditions</a> for full details.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">7 <span>in</span> 7</div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <div class="footer-powered">
+        <span>⚙</span>
+        Powered by <strong>Gopher the Gold Productions</strong>
+      </div>
+      <p class="footer-copy">&copy; 2026 7 in 7. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
