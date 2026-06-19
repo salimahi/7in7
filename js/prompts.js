@@ -127,8 +127,8 @@
                 Subscribe now to ensure you receive your submission link automatically the moment the cycle opens.
               </p>
               <div class="btn-group" style="justify-content:center;">
-                <a href="register.html" class="btn btn-primary">Register for All 12 Cycles</a>
-                <a href="register.html" class="btn btn-ghost">Register This Cycle</a>
+                <a href="register.html" class="btn btn-primary">Register for 12 Cycles</a>
+                <a href="register.html" class="btn btn-ghost">Register for this Cycle</a>
               </div>
             </div>
           </div>
@@ -231,8 +231,8 @@
             <div class="gold-rule"></div>
             <p style="color:var(--text-muted); max-width:500px; margin:0 auto 2rem;">${teaser} Register annually to secure your spot in every cycle automatically.</p>
             <div class="btn-group">
-              <a href="register.html" class="btn btn-primary">Register for All 12 Cycles</a>
-              <a href="register.html" class="btn btn-ghost">Register This Cycle</a>
+              <a href="register.html" class="btn btn-primary">Register for 12 Cycles</a>
+              <a href="register.html" class="btn btn-ghost">Register for this Cycle</a>
             </div>
           </div>
         </div>

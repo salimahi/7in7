@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register — 7 in 7</title>
+  <title>Register | 7 in 7</title>
   <meta name="description" content="Register for the 7 in 7 monthly short film screenwriting competition. Pay once, and at 7pm ET on the 7th you'll receive the prompt and your unique submission link together in one email." />
   <link rel="stylesheet" href="css/styles.css" />
   <style>
@@ -159,7 +159,7 @@
       <p class="section-label">Enter the Competition</p>
       <h1>Register</h1>
       <div class="gold-rule" style="margin: 1rem auto 0;"></div>
-      <p>Register once. At 7pm ET on the 7th, your prompt and unique submission link arrive together — in one email.</p>
+      <p>Register once. At 7pm ET on the 7th, your prompt and unique submission link arrive together in one email.</p>
     </div>
   </header>
 
@@ -174,7 +174,7 @@
           <div class="how-step-num">1</div>
           <div class="how-step-body">
             <strong>Register below</strong>
-            <span>Choose your plan — single cycle ($25) or all 12 cycles ($240/year) — fill in your details, and complete payment.</span>
+            <span>Choose your plan (single cycle at $25 or all 12 cycles at $240/year), fill in your details, and complete payment.</span>
           </div>
         </div>
         <div class="how-step">
@@ -187,8 +187,8 @@
         <div class="how-step">
           <div class="how-step-num">3</div>
           <div class="how-step-body">
-            <strong>Write your script — 7 days</strong>
-            <span>You have until 7pm ET on the 14th. Write a script of up to 7 pages (fewer pages are allowed) in standard screenplay format. Your PDF must contain no identifying information — the title page should include the script title only, with no author name.</span>
+            <strong>Write your script in 7 days</strong>
+            <span>You have until 7pm ET on the 14th. Write a script of up to 7 pages in standard screenplay format. Your PDF must contain no identifying information. The title page should include the script title only, with no author name.</span>
           </div>
         </div>
         <div class="how-step">
@@ -232,11 +232,11 @@
           <p class="option-desc">Enter one month. Receive your prompt and submission link at 7pm ET on the 7th.</p>
         </div>
         <div class="register-option featured">
-          <p class="option-label">Annual — All 12 Cycles</p>
+          <p class="option-label">Annual: All 12 Cycles</p>
           <p class="option-price">$240</p>
-          <p class="option-per">billed once — $20 per cycle</p>
+          <p class="option-per">billed once, $20 per cycle</p>
           <p class="option-desc">Enter every monthly cycle for a full year. Prompt and link delivered automatically each month at 7pm ET on the 7th.</p>
-          <p class="option-savings">Save $60 — 2 cycles free</p>
+          <p class="option-savings">Save $60 (2 cycles free)</p>
         </div>
       </div>
 
@@ -270,6 +270,10 @@
             <option value="other">Other</option>
           </select>
         </div>
+        <div class="form-group" id="reg-country-other-wrap" style="display: none;">
+          <label for="reg-country-other">Please specify your country</label>
+          <input type="text" id="reg-country-other" placeholder="Your country" autocomplete="country-name" />
+        </div>
 
         <div style="border-top: 1px solid var(--card-border); margin: 1.5rem 0;"></div>
 
@@ -291,11 +295,11 @@
         </div>
         <div class="form-check" style="margin-bottom: 0.75rem;">
           <input type="checkbox" id="reg-anon" />
-          <label for="reg-anon">I understand my submission PDF must contain no identifying information. The title page will include the script title only — no author name.</label>
+          <label for="reg-anon">I understand my submission PDF must contain no identifying information. The title page will include the script title only, with no author name.</label>
         </div>
         <div class="form-check" style="margin-bottom: 1.5rem;">
           <input type="checkbox" id="reg-ip" />
-          <label for="reg-ip">I understand that my script remains my intellectual property. By submitting, I grant 7 in 7 a limited, non-exclusive license to share excerpts for feedback purposes and to potentially produce my script as a table read podcast episode. No other rights are transferred.</label>
+          <label for="reg-ip">I understand that my script remains my intellectual property. By submitting, I grant 7 in 7 a limited, non-exclusive license to share excerpts for feedback purposes and to potentially produce my script as an episode of the 7 in 7 Podcast. No other rights are transferred.</label>
         </div>
 
         <button class="btn-submit" type="button" disabled title="Registration not yet open" style="width: 100%; opacity: 0.7;">
@@ -332,5 +336,11 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    document.getElementById('reg-country').addEventListener('change', function () {
+      document.getElementById('reg-country-other-wrap').style.display =
+        this.value === 'other' ? 'block' : 'none';
+    });
+  </script>
 </body>
 </html>

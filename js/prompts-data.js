@@ -20,7 +20,7 @@
 
   TEMPLATE:
   {
-    cycle:    'Month YYYY — Cycle ##',
+    cycle:    'Month YYYY | Cycle ##',
     month:    'Month YYYY',
     revealAt: 'YYYY-MM-DDTHH:MM:00Z',
     deadline: 'YYYY-MM-DDTHH:MM:00Z',
@@ -35,11 +35,11 @@
 
 const PROMPTS = [
   {
-    cycle:    'July 2026 — Cycle 01',
+    cycle:    'July 2026 | Cycle 01',
     month:    'July 2026',
     revealAt: '2026-07-07T23:00:00Z',   // 7pm EDT
     deadline: '2026-07-14T23:00:00Z',   // 7pm EDT
-    text:     'Two people share a meal for the last time — but only one of them knows it.',
+    text:     'Two people share a meal for the last time, but only one of them knows it.',
     winners: {
       first:  null,
       second: null,
