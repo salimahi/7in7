@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Actors | 7 in 7</title>
+  <meta name="description" content="Join the 7 in 7 casting call mailing list. Voice actors from around the country are recruited each month to perform winning scripts on the 7 in 7 Podcast." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .actors-form {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+
+    @media (max-width: 560px) {
+      .actors-form { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="register.html" class="nav-cta">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-content">
+      <p class="section-label">Voice Actors</p>
+      <h1>Act in the Podcast</h1>
+      <div class="gold-rule" style="margin: 1rem auto 0;"></div>
+      <p>Each month's winning script is performed by voice actors from around the country. Join the mailing list to be considered for upcoming productions.</p>
+    </div>
+  </header>
+
+  <!-- WHAT IT INVOLVES -->
+  <section class="section section-alt">
+    <div class="container" style="max-width: 860px;">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">What to expect</h2>
+      <div class="gold-rule"></div>
+      <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 2rem;">
+        <div class="card">
+          <span class="card-icon">📜</span>
+          <h3>Fresh Material Monthly</h3>
+          <p>Every cycle produces a new winning script. Roles range across genre and character type depending on what writers submit each month.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🎚</span>
+          <h3>Recorded Virtually</h3>
+          <p>Productions are recorded remotely via Podcastle. You can participate from anywhere.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">📡</span>
+          <h3>Published Everywhere</h3>
+          <p>Episodes are distributed across all major streaming platforms within 30 days of results. A real credit for your portfolio.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🤝</span>
+          <h3>Collaboration Welcome</h3>
+          <p>The winning writer is invited to participate in the recording too. It's a genuine creative collaboration when both show up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGN-UP FORM -->
+  <section class="section">
+    <div class="container" style="max-width: 680px;">
+
+      <p class="section-label">Casting Call</p>
+      <h2 class="section-title">Join the mailing list</h2>
+      <div class="gold-rule"></div>
+
+      <div class="submit-notice" style="margin-bottom: 2rem;">
+        <span style="flex-shrink:0; font-size:1rem;">ℹ</span>
+        <span>
+          <strong>Coming soon:</strong> The casting call mailing list will open at launch. Enter your details below and we'll notify you when sign-ups open.
+        </span>
+      </div>
+
+      <div class="actors-form">
+        <h3 style="font-size: 1.1rem; color: var(--purple-light); margin-bottom: 1.75rem;">Your Information</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="act-first">First Name</label>
+            <input type="text" id="act-first" placeholder="Jane" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="act-last">Last Name</label>
+            <input type="text" id="act-last" placeholder="Smith" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="act-email">Email Address</label>
+          <input type="email" id="act-email" placeholder="jane@example.com" autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="act-location">City / Country</label>
+          <input type="text" id="act-location" placeholder="e.g. Chicago, US" />
+        </div>
+
+        <div class="form-group">
+          <label for="act-experience">Acting Background (optional)</label>
+          <textarea id="act-experience" rows="3" placeholder="Brief description of your voice acting or performance experience" style="resize: vertical;"></textarea>
+        </div>
+
+        <div class="form-check" style="margin-bottom: 1.5rem;">
+          <input type="checkbox" id="act-consent" />
+          <label for="act-consent">I understand this is a mailing list sign-up only. Joining does not guarantee a role. I may be contacted when casting opens for an upcoming production.</label>
+        </div>
+
+        <button class="btn-submit" type="button" disabled title="Casting list not yet open" style="width: 100%; opacity: 0.7;">
+          Join the Mailing List →
+        </button>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
+          Your contact information is used only to notify you about upcoming casting calls. No spam.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">7 <span>in</span> 7</div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="actors.html">Voice Actors</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <div class="footer-powered">
+        <span>⚙</span>
+        Powered by <strong>Gopher the Gold Productions</strong>
+      </div>
+      <p class="footer-copy">&copy; 2026 7 in 7. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
