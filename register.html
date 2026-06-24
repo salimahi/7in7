@@ -9,7 +9,7 @@
   <style>
     .register-option-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 1.5rem;
       margin-bottom: 2.5rem;
     }
@@ -228,8 +228,8 @@
         <div class="register-option">
           <p class="option-label">Single Cycle</p>
           <p class="option-price">$25</p>
-          <p class="option-per">per cycle</p>
-          <p class="option-desc">Enter one month. Receive your prompt and submission link at 7pm ET on the 7th.</p>
+          <p class="option-per">per cycle, register before the prompt</p>
+          <p class="option-desc">Register before 7pm ET on the 7th. Prompt and submission link arrive at 7pm ET on the 7th. Full 7-day writing window.</p>
         </div>
         <div class="register-option featured">
           <p class="option-label">Annual: All 12 Cycles</p>
@@ -237,6 +237,12 @@
           <p class="option-per">billed once, $20 per cycle</p>
           <p class="option-desc">Enter every monthly cycle for a full year. Prompt and link delivered automatically each month at 7pm ET on the 7th.</p>
           <p class="option-savings">Save $60 (2 cycles free)</p>
+        </div>
+        <div class="register-option">
+          <p class="option-label">Late Entry</p>
+          <p class="option-price">$35</p>
+          <p class="option-per">per cycle, register after the prompt drops</p>
+          <p class="option-desc">Register any time after the prompt is released on the 7th. Submission deadline is still 7pm ET on the 14th. No extra time.</p>
         </div>
       </div>
 
@@ -280,9 +286,9 @@
         <div style="background: rgba(61,39,133,0.15); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
             <span style="font-size: 0.9rem; color: var(--text);">Single Cycle Entry</span>
-            <span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--purple-light);">$25.00</span>
+            <span style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--purple-light);">$25 / $35</span>
           </div>
-          <p style="font-size: 0.82rem; color: var(--text-muted);">One-time payment. Prompt and submission link delivered at 7pm ET on the 7th. Non-refundable.</p>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">$25 if registering before the prompt drops. $35 if registering after. Submission deadline is 7pm ET on the 14th either way. Non-refundable.</p>
         </div>
 
         <div class="form-check" style="margin-bottom: 0.75rem;">
