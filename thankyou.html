@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | 7 in 7</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .redirect-box {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .redirect-spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: var(--purple-light);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 2rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .redirect-box h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .redirect-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .redirect-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--purple-light);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="register.html" class="nav-cta">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section" style="min-height: 60vh; display: flex; align-items: center;">
+    <div class="container">
+      <div class="redirect-box">
+        <div class="redirect-spinner"></div>
+        <h1>Redirecting you to your registration form&hellip;</h1>
+        <p>You'll be taken to a short form to complete your registration. This should only take a moment.</p>
+        <a id="manual-link" class="redirect-link" href="#">If you are not redirected automatically, click here.</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">7 <span>in</span> 7</div>
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="actors.html">Voice Actors</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <div class="footer-powered">
+        <span>⚙</span>
+        Powered by <strong>Gopher the Gold Productions</strong>
+      </div>
+      <p class="footer-copy">&copy; 2026 7 in 7. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    var FORM_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSfAsZDdoBO9QhcjqZ5XlE7jtqrSXx-ap2MpQaHYTBTen9WV3A/viewform?usp=pp_url&entry.1559517164=';
+    var params = new URLSearchParams(window.location.search);
+    var sessionId = params.get('session_id') || '';
+    var destination = FORM_BASE + encodeURIComponent(sessionId);
+    document.getElementById('manual-link').href = destination;
+    window.location.replace(destination);
+  </script>
+</body>
+</html>
