@@ -944,11 +944,10 @@ tbody td:nth-child(2) {
 
 /* Gate checklist */
 .gate-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1rem;
   margin-top: 2rem;
-  max-width: 640px;
 }
 
 .gate-item {
