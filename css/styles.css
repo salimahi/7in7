@@ -1090,9 +1090,10 @@ tbody td:nth-child(2) {
   gap: 1rem;
   padding: 1.35rem 1.5rem;
   cursor: pointer;
-  font-family: 'Cormorant', serif;
-  font-weight: 500;
-  font-size: 1.1rem;
+  font-family: 'Geist Mono', monospace;
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
   color: var(--dark);
   background: var(--card-bg);
   transition: background var(--transition);
