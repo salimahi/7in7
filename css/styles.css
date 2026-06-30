@@ -668,7 +668,10 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 
 /* Prize footnote */
 .prize-footnote {
-  font-size: 0.8rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
   color: var(--text-muted);
   margin-top: 0.6rem;
   opacity: 0.85;
