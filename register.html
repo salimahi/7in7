@@ -49,12 +49,22 @@
       line-height: 1.55;
     }
 
+    .stripe-options-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
     .stripe-option {
+      flex: 1;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
       padding: 1.75rem;
-      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .stripe-options-row { flex-direction: column; }
     }
 
     .stripe-option.featured {
@@ -143,8 +153,39 @@
     </div>
   </header>
 
-  <!-- HOW IT WORKS -->
+  <!-- REGISTRATION -->
   <section class="section section-alt">
+    <div class="container" style="max-width: 860px;">
+
+      <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
+      <div class="stripe-options-row">
+        <div class="stripe-option">
+          <stripe-buy-button
+            buy-button-id="buy_btn_1TmDBgPo30z6bWSwhFzFCOH7"
+            publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
+          >
+          </stripe-buy-button>
+        </div>
+
+        <div class="stripe-option featured">
+          <stripe-buy-button
+            buy-button-id="buy_btn_1TmDExPo30z6bWSwdEuGNMca"
+            publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
+          >
+          </stripe-buy-button>
+        </div>
+      </div>
+
+      <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
+        Payment processing by Stripe. Your prompt and submission link will be emailed at 7pm ET on the 7th. See <a href="terms.html">Terms &amp; Conditions</a> for full details.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
     <div class="container" style="max-width: 860px;">
       <p class="section-label">The Process</p>
       <h2 class="section-title">How it Works</h2>
@@ -186,46 +227,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- REGISTRATION -->
-  <section class="section">
-    <div class="container" style="max-width: 680px;">
-
-      <p class="section-label">Registration</p>
-      <h2 class="section-title">Choose your commitment</h2>
-      <div class="gold-rule" style="margin-bottom: 2.5rem;"></div>
-
-      <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-
-      <div class="stripe-option">
-        <p class="stripe-option-label">Single Cycle</p>
-        <p class="stripe-option-price">$25</p>
-        <p class="stripe-option-desc">Register before 7pm ET on the 7th. Prompt and submission link arrive in your email. Non-refundable.</p>
-        <stripe-buy-button
-          buy-button-id="buy_btn_1TmDBgPo30z6bWSwhFzFCOH7"
-          publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
-        >
-        </stripe-buy-button>
-      </div>
-
-      <div class="stripe-option featured">
-        <p class="stripe-option-label">Annual: All 12 Cycles</p>
-        <p class="stripe-option-price">$240</p>
-        <p class="stripe-option-savings">Save $60 — only $20 per cycle</p>
-        <p class="stripe-option-desc">Enter for a full year. Prompt and link delivered automatically each month at 7pm ET on the 7th. Non-refundable.</p>
-        <stripe-buy-button
-          buy-button-id="buy_btn_1TmDExPo30z6bWSwdEuGNMca"
-          publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
-        >
-        </stripe-buy-button>
-      </div>
-
-      <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1.5rem;">
-        Payment processing by Stripe. Your prompt and submission link will be emailed at 7pm ET on the 7th. See <a href="terms.html">Terms &amp; Conditions</a> for full details.
-      </p>
-
     </div>
   </section>
 
