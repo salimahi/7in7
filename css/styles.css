@@ -275,7 +275,7 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 .hero-subtitle-cormorant {
   font-family: 'Cormorant', serif;
   font-weight: 500;
-  font-size: clamp(1.8rem, 4vw, 3.8rem);
+  font-size: clamp(1.4rem, 3.5vw, 3rem);
   color: #1A1714;
   letter-spacing: 0.01em;
   line-height: 1.05;
@@ -631,7 +631,11 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 }
 
 .prize-desc {
-  font-size: 0.9rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  line-height: 1.7;
   color: var(--text-muted);
 }
 
@@ -833,7 +837,7 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 
 .page-header h1 {
   font-family: 'Cormorant', serif;
-  font-size: clamp(1.8rem, 4vw, 3.8rem);
+  font-size: clamp(1.4rem, 3.5vw, 3rem);
   font-weight: 500;
   color: var(--dark);
   margin-bottom: 1rem;
