@@ -586,7 +586,7 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 2rem 1.5rem;
+  padding: 1.25rem 1rem;
   text-align: center;
   position: relative;
   transition: border-color var(--transition);
@@ -623,11 +623,11 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 
 .prize-amount {
   font-family: 'Cormorant', serif;
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 600;
   color: var(--dark);
   line-height: 1;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .prize-desc {
@@ -637,15 +637,16 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 
 .prize-callout {
   margin-bottom: 2rem;
-  background: rgba(180, 154, 66, 0.07);
-  border: 1px solid rgba(180, 154, 66, 0.3);
+  background: rgba(140, 103, 55, 0.1);
+  border: 2px solid #8C6737;
   border-radius: var(--radius);
-  padding: 1.25rem 1.75rem;
+  padding: 1.5rem 2rem;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 500;
 }
-.prize-callout strong { color: var(--dark); }
+.prize-callout strong { color: #8C6737; font-size: 1.05rem; }
 
 /* Prize footnote */
 .prize-footnote {
@@ -669,20 +670,14 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
   align-items: center;
 }
 
-.podcast-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  aspect-ratio: 1;
+.podcast-thumbnail {
+  width: 100%;
   max-width: 300px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
   margin: 0 auto;
-  background: var(--dark);
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  padding: 2.5rem;
-  text-align: center;
 }
 
 .podcast-badge-icon {
@@ -838,7 +833,7 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 
 .page-header h1 {
   font-family: 'Cormorant', serif;
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-size: clamp(1.8rem, 4vw, 3.8rem);
   font-weight: 500;
   color: var(--dark);
   margin-bottom: 1rem;
