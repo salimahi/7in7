@@ -1004,7 +1004,11 @@ tbody td:nth-child(2) {
   font-size: 0.95rem;
 }
 .gate-item-body span {
-  font-size: 0.9rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  line-height: 1.75;
   color: var(--text-muted);
 }
 
