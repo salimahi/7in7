@@ -207,7 +207,6 @@
           <p class="section-label">Archive</p>
           <h2 class="section-title">Previous Prompts</h2>
           <div class="gold-rule"></div>
-          <p style="color:var(--text-muted);">Every past prompt lives here after its cycle closes. Winners are noted once results are announced.</p>
           ${inner}
         </div>
       </section>`;
@@ -241,7 +240,6 @@
 
   root.innerHTML =
     buildCurrentSection() +
-    buildArchiveSection() +
-    buildUpcomingSection();
+    buildArchiveSection();
 
 })();
