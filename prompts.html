@@ -9,8 +9,8 @@
   <style>
     /* Prompts-specific styles */
     .prompt-current {
-      background: linear-gradient(135deg, rgba(61, 39, 133, 0.4) 0%, rgba(107, 53, 178, 0.2) 100%);
-      border: 1px solid var(--purple-mid);
+      background: rgba(180, 154, 66, 0.05);
+      border: 1px solid rgba(180, 154, 66, 0.35);
       border-radius: var(--radius);
       padding: 3rem;
       position: relative;
@@ -22,32 +22,35 @@
       position: absolute;
       top: -60px; right: -60px;
       width: 220px; height: 220px;
-      background: radial-gradient(circle, rgba(107, 53, 178, 0.25) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(180, 154, 66, 0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .prompt-cycle-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.67rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-dark);
       margin-bottom: 0.5rem;
     }
 
     .prompt-month {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-size: clamp(1.4rem, 3vw, 2rem);
-      color: var(--text);
+      font-weight: 500;
+      color: var(--dark);
       margin-bottom: 1.5rem;
     }
 
     .prompt-text {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 4vw, 2.6rem);
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
       font-style: italic;
-      color: var(--purple-light);
-      line-height: 1.3;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.25;
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
@@ -56,7 +59,7 @@
     .prompt-text::before {
       content: '\201C';
       font-size: 5rem;
-      color: rgba(107, 53, 178, 0.3);
+      color: rgba(180, 154, 66, 0.18);
       position: absolute;
       top: -1.5rem;
       left: -1rem;
@@ -98,15 +101,15 @@
     .prompt-status::before { content: '●'; font-size: 0.55rem; }
 
     .prompt-status.open {
-      background: rgba(107, 53, 178, 0.25);
-      color: var(--purple-light);
-      border: 1px solid var(--purple-mid);
+      background: rgba(180, 154, 66, 0.1);
+      color: var(--gold-dark);
+      border: 1px solid var(--gold);
     }
 
     .prompt-status.closed {
-      background: rgba(168, 158, 192, 0.1);
+      background: rgba(107, 99, 82, 0.07);
       color: var(--text-muted);
-      border: 1px solid rgba(168, 158, 192, 0.2);
+      border: 1px solid rgba(107, 99, 82, 0.18);
     }
 
     .prompt-status.upcoming {
@@ -132,7 +135,7 @@
     }
 
     .archive-card:hover {
-      border-color: var(--purple-mid);
+      border-color: var(--gold);
       transform: translateY(-2px);
     }
 
@@ -154,11 +157,12 @@
     }
 
     .archive-prompt {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-style: italic;
-      font-size: 1.1rem;
-      color: var(--text);
-      line-height: 1.4;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.35;
       margin-bottom: 1.25rem;
     }
 
@@ -219,7 +223,7 @@
   <!-- NAV -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <a href="index.html" class="nav-logo"><img src="7in7logos/Wordmark Black n Gold.svg" alt="Write 7 in 7" class="nav-logo-img" /></a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -250,7 +254,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="footer-logo">7 <span>in</span> 7</div>
+      <div class="footer-logo"><img src="7in7logos/Wordmark Cream n Gold.svg" alt="Write 7 in 7" class="footer-logo-img" /></div>
       <ul class="footer-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="prompts.html">Prompts</a></li>

@@ -24,14 +24,15 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(61, 39, 133, 0.35);
-      border: 1px solid var(--purple-mid);
+      background: rgba(180, 154, 66, 0.1);
+      border: 1px solid var(--gold);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--purple-light);
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gold-dark);
       flex-shrink: 0;
     }
 
@@ -57,24 +58,25 @@
     }
 
     .stripe-option.featured {
-      border-color: var(--purple-mid);
-      background: rgba(61, 39, 133, 0.18);
+      border-color: var(--gold);
+      background: rgba(180, 154, 66, 0.06);
       position: relative;
     }
 
     .stripe-option.featured::before {
       content: 'BEST VALUE';
       position: absolute;
-      top: -12px;
+      top: -11px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
       background: var(--gold);
-      color: #fff;
-      padding: 0.25rem 0.9rem;
-      border-radius: 100px;
+      color: var(--dark);
+      padding: 0.2rem 0.9rem;
+      border-radius: 2px;
     }
 
     .stripe-option-label {
@@ -87,10 +89,10 @@
     }
 
     .stripe-option-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--text);
+      font-family: 'Cormorant', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--dark);
       line-height: 1;
       margin-bottom: 0.3rem;
     }
@@ -115,7 +117,7 @@
   <!-- NAV -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <a href="index.html" class="nav-logo"><img src="7in7logos/Wordmark Black n Gold.svg" alt="Write 7 in 7" class="nav-logo-img" /></a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -229,7 +231,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="footer-logo">7 <span>in</span> 7</div>
+      <div class="footer-logo"><img src="7in7logos/Wordmark Cream n Gold.svg" alt="Write 7 in 7" class="footer-logo-img" /></div>
       <ul class="footer-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="prompts.html">Prompts</a></li>

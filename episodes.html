@@ -9,8 +9,8 @@
   <style>
     /* Podcast hero */
     .podcast-hero {
-      background: linear-gradient(135deg, rgba(61, 39, 133, 0.45) 0%, rgba(107, 53, 178, 0.2) 100%);
-      border: 1px solid var(--purple-mid);
+      background: rgba(180, 154, 66, 0.06);
+      border: 1px solid rgba(180, 154, 66, 0.3);
       border-radius: var(--radius);
       padding: 3rem;
       display: grid;
@@ -22,8 +22,8 @@
 
     .podcast-cover {
       aspect-ratio: 1;
-      background: var(--purple-deep);
-      border: 1px solid var(--purple-mid);
+      background: var(--dark);
+      border: 1px solid var(--gold);
       border-radius: var(--radius);
       display: flex;
       flex-direction: column;
@@ -37,10 +37,10 @@
     .podcast-cover-icon { font-size: 2.5rem; }
 
     .podcast-cover-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--purple-light);
+      font-family: 'Cormorant', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--bg);
       line-height: 1.2;
     }
 
@@ -94,8 +94,8 @@
     }
 
     .platform-btn:hover {
-      border-color: var(--purple-light);
-      color: var(--text);
+      border-color: var(--gold);
+      color: var(--dark);
     }
 
     .platform-btn[href=""] {
@@ -105,6 +105,16 @@
     }
 
     .platform-icon { font-size: 1rem; }
+
+    .platforms-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
 
     /* Episode list */
     .episodes-list {
@@ -122,7 +132,7 @@
       transition: border-color var(--transition);
     }
 
-    .episode-card:hover { border-color: var(--purple-mid); }
+    .episode-card:hover { border-color: var(--gold); }
 
     .episode-card-header {
       display: flex;
@@ -132,30 +142,34 @@
     }
 
     .episode-number {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: var(--gold);
-      background: rgba(140, 103, 55, 0.12);
-      border: 1px solid rgba(140, 103, 55, 0.3);
+      font-family: 'Geist Mono', monospace;
+      font-weight: 400;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--gold-dark);
+      background: rgba(180, 154, 66, 0.1);
+      border: 1px solid rgba(180, 154, 66, 0.28);
       padding: 0.2rem 0.6rem;
       border-radius: var(--radius-sm);
       flex-shrink: 0;
     }
 
     .episode-cycle {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
     .episode-title {
-      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
-      color: var(--purple-light);
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+      font-weight: 600;
+      color: var(--dark);
       margin-bottom: 0.35rem;
-      line-height: 1.3;
+      line-height: 1.2;
     }
 
     .episode-writer {
@@ -220,7 +234,7 @@
   <!-- NAV -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo">7 <span>in</span> 7</a>
+      <a href="index.html" class="nav-logo"><img src="7in7logos/Wordmark Black n Gold.svg" alt="Write 7 in 7" class="nav-logo-img" /></a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -299,7 +313,7 @@
         <div class="card">
           <span class="card-icon">🎭</span>
           <h3>Actors Are Cast</h3>
-          <p>Voice actors are recruited from around the country, giving performers a real project to work on every month. <a href="actors.html" style="color: var(--purple-light);">Join the casting call mailing list.</a></p>
+          <p>Voice actors are recruited from around the country, giving performers a real project to work on every month. <a href="actors.html" style="color: var(--gold-dark);">Join the casting call mailing list.</a></p>
         </div>
         <div class="card">
           <span class="card-icon">🎚</span>
@@ -336,7 +350,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="footer-logo">7 <span>in</span> 7</div>
+      <div class="footer-logo"><img src="7in7logos/Wordmark Cream n Gold.svg" alt="Write 7 in 7" class="footer-logo-img" /></div>
       <ul class="footer-nav">
         <li><a href="index.html">Home</a></li>
         <li><a href="prompts.html">Prompts</a></li>
