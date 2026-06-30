@@ -458,7 +458,11 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 }
 
 .card p {
-  font-size: 0.95rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  line-height: 1.75;
   color: var(--text-muted);
 }
 
