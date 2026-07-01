@@ -39,7 +39,7 @@ const PROMPTS = [
     month:    'July 2026',
     revealAt: '2026-07-07T23:00:00Z',   // 7pm EDT
     deadline: '2026-07-14T23:00:00Z',   // 7pm EDT
-    text:     'Two people share a meal for the last time, but only one of them knows it.',
+    text:     'Include at lease one of the seven deadly sins.',
     winners: {
       first:  null,
       second: null,
