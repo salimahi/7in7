@@ -53,7 +53,7 @@
     return `<span class="prompt-status ${cls}">${label}</span>`;
   }
 
-  function winnersHTML(winners) {
+  function winnersHTML(winners, winnerImage) {
     if (!winners) return '';
     const { first, second, third } = winners;
     if (!first && !second && !third) return '';
@@ -65,7 +65,12 @@
          </div>`
       : '';
 
+    const graphic = winnerImage
+      ? `<img src="${escHtml(winnerImage)}" alt="Winner announcement graphic" class="winner-graphic" />`
+      : '';
+
     return `<div class="archive-winners">
+      ${graphic}
       ${row('first',  '1st', first)}
       ${row('second', '2nd', second)}
       ${row('third',  '3rd', third)}
@@ -89,6 +94,7 @@
             <div class="prompt-current">
               <p class="prompt-cycle-label">${escHtml(active.cycle)}</p>
               <p class="prompt-month">${fmtWindow(active.revealAt, active.deadline)}</p>
+              ${active.image ? `<img src="${escHtml(active.image)}" alt="${escHtml(active.cycle)} thumbnail" class="prompt-thumbnail" />` : ''}
               <p class="prompt-text">${escHtml(active.text)}</p>
               <div class="prompt-meta">
                 ${statusBadge('open', 'Open')}
@@ -196,7 +202,7 @@
             ${statusBadge('closed', 'Closed')}
           </div>
           <p class="archive-prompt">&ldquo;${escHtml(p.text)}&rdquo;</p>
-          ${winnersHTML(p.winners)}
+          ${winnersHTML(p.winners, p.winnerImage)}
         </div>`).join('');
       inner = `<div class="archive-grid">${cards}</div>`;
     }

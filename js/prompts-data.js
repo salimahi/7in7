@@ -17,14 +17,29 @@
 
   TO RECORD RESULTS:
     Fill in the winners object after the 22nd. Null fields are simply hidden.
+    Winners (and the winner graphic) only appear once the cycle lands in the
+    Archive — i.e. once its deadline has passed — regardless of when you fill
+    them in.
+
+  IMAGE:
+    Optional. Save the thumbnail under img/prompts/, named by cycle
+    (e.g. img/prompts/2026-07.jpg), and set the image field to that path.
+    Like everything else here, it stays hidden until revealAt passes.
+
+  WINNER GRAPHIC:
+    Optional. Save under img/prompts/winners/, named by cycle
+    (e.g. img/prompts/winners/2026-07.jpg), and set winnerImage to that path.
+    Shows in the Past Prompts archive card alongside the winners list.
 
   TEMPLATE:
   {
-    cycle:    'Month YYYY | Cycle ##',
-    month:    'Month YYYY',
-    revealAt: 'YYYY-MM-DDTHH:MM:00Z',
-    deadline: 'YYYY-MM-DDTHH:MM:00Z',
-    text:     'The prompt text goes here.',
+    cycle:       'Month YYYY | Cycle ##',
+    month:       'Month YYYY',
+    revealAt:    'YYYY-MM-DDTHH:MM:00Z',
+    deadline:    'YYYY-MM-DDTHH:MM:00Z',
+    text:        'The prompt text goes here.',
+    image:       null,   // e.g. 'img/prompts/2026-07.jpg'
+    winnerImage: null,   // e.g. 'img/prompts/winners/2026-07.jpg'
     winners: {
       first:  null,   // { name: 'Writer Name', title: 'Script Title' }
       second: null,
@@ -35,11 +50,13 @@
 
 const PROMPTS = [
   {
-    cycle:    'July 2026 | Cycle 01',
-    month:    'July 2026',
-    revealAt: '2026-07-07T23:00:00Z',   // 7pm EDT
-    deadline: '2026-07-14T23:00:00Z',   // 7pm EDT
-    text:     'Two people share a meal for the last time, but only one of them knows it.',
+    cycle:       'July 2026 | Cycle 01',
+    month:       'July 2026',
+    revealAt:    '2026-07-07T23:00:00Z',   // 7pm EDT
+    deadline:    '2026-07-14T23:00:00Z',   // 7pm EDT
+    text:        'Two people share a meal for the last time, but only one of them knows it.',
+    image:       'img/prompts/2026-07.jpg',
+    winnerImage: null,
     winners: {
       first:  null,
       second: null,

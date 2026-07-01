@@ -1,7 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git *)"
+      "Bash(git *)",
+      "PowerShell(python -c \"import PIL; print\\('pillow ok'\\)\" 2>&1; python -c \"import fitz; print\\('pymupdf ok'\\)\" 2>&1; python -c \"import pdf2image; print\\('pdf2image ok'\\)\" 2>&1)",
+      "PowerShell(pip install *)",
+      "PowerShell(Copy-Item *)",
+      "WebFetch(domain:write7in7.com)",
+      "Bash(curl -s https://write7in7.com/)",
+      "Bash(curl -sI https://write7in7.com/)",
+      "Bash(curl -s https://write7in7.com/ -o /tmp/live_index.html)",
+      "Read(//tmp/**)",
+      "Bash(curl -s https://write7in7.com/css/styles.css -o /tmp/live_styles.css)",
+      "Bash(curl *)"
     ]
   }
 }
