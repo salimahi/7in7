@@ -31,6 +31,11 @@
     (e.g. img/prompts/winners/2026-07.jpg), and set winnerImage to that path.
     Shows in the Past Prompts archive card alongside the winners list.
 
+  TYPE:
+    Optional. Free-text tag (e.g. 'Dialogue Prompt', 'Visual Prompt',
+    'Genre Bender'). Shown as a badge next to the Open/Closed status,
+    on both the current prompt and archive cards.
+
   TEMPLATE:
   {
     cycle:       'Month YYYY | Cycle ##',
@@ -38,6 +43,7 @@
     revealAt:    'YYYY-MM-DDTHH:MM:00Z',
     deadline:    'YYYY-MM-DDTHH:MM:00Z',
     text:        'The prompt text goes here.',
+    type:        null,   // e.g. 'Dialogue Prompt'
     image:       null,   // e.g. 'img/prompts/2026-07.jpg'
     winnerImage: null,   // e.g. 'img/prompts/winners/2026-07.jpg'
     winners: {
@@ -54,7 +60,8 @@ const PROMPTS = [
     month:       'July 2026',
     revealAt:    '2026-07-07T23:00:00Z',   // 7pm EDT
     deadline:    '2026-07-14T23:00:00Z',   // 7pm EDT
-    text:        'Two people share a meal for the last time, but only one of them knows it.',
+    text:        'Include at least one of the seven deadly sins.',
+    type:        null,
     image:       'img/prompts/2026-07.jpg',
     winnerImage: null,
     winners: {
