@@ -53,6 +53,10 @@
     return `<span class="prompt-status ${cls}">${label}</span>`;
   }
 
+  function typeBadge(type) {
+    return type ? `<span class="prompt-type-badge">${escHtml(type)}</span>` : '';
+  }
+
   function winnersHTML(winners, winnerImage) {
     if (!winners) return '';
     const { first, second, third } = winners;
@@ -98,6 +102,7 @@
               <p class="prompt-text">${escHtml(active.text)}</p>
               <div class="prompt-meta">
                 ${statusBadge('open', 'Open')}
+                ${typeBadge(active.type)}
                 <div class="prompt-meta-item">
                   <span>📅</span>
                   <span>Prompt released: <strong>${fmtReveal(active.revealAt)}</strong></span>
@@ -158,6 +163,7 @@
               <p class="prompt-text">${escHtml(last.text)}</p>
               <div class="prompt-meta">
                 ${statusBadge('closed', 'Closed')}
+                ${typeBadge(last.type)}
                 <div class="prompt-meta-item">
                   <span>⏰</span>
                   <span>Submissions closed: <strong>${fmtDeadline(last.deadline)}</strong></span>
@@ -199,7 +205,10 @@
         <div class="archive-card">
           <div class="archive-card-header">
             <span class="archive-month">${escHtml(p.cycle)}</span>
-            ${statusBadge('closed', 'Closed')}
+            <div style="display:flex; gap:0.4rem; align-items:center;">
+              ${typeBadge(p.type)}
+              ${statusBadge('closed', 'Closed')}
+            </div>
           </div>
           <p class="archive-prompt">&ldquo;${escHtml(p.text)}&rdquo;</p>
           ${winnersHTML(p.winners, p.winnerImage)}
