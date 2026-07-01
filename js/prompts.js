@@ -183,7 +183,7 @@
       inner = `
         <div class="empty-archive">
           <span style="font-size:2rem;">📂</span>
-          <p>Previous prompts will appear here after each cycle closes.</p>
+          <p>Previous prompts and winners will appear here after each cycle closes.</p>
           ${archive.length === 0 && active
             ? `<p style="margin-top:0.35rem; font-size:0.85rem;">Check back after ${fmtDeadline(active.deadline)}.</p>`
             : ''}
@@ -205,7 +205,7 @@
       <section class="section section-alt">
         <div class="container" style="max-width:860px;">
           <p class="section-label">Archive</p>
-          <h2 class="section-title">Previous Prompts</h2>
+          <h2 class="section-title">Previous Prompts and Winners</h2>
           <div class="gold-rule"></div>
           ${inner}
         </div>
