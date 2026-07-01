@@ -61,7 +61,7 @@ const PROMPTS = [
     revealAt:    '2026-07-07T23:00:00Z',   // 7pm EDT
     deadline:    '2026-07-14T23:00:00Z',   // 7pm EDT
     text:        'Include at least one of the seven deadly sins.',
-    type:        null,
+    type:        'Writer\'s Choice',
     image:       'img/prompts/2026-07.jpg',
     winnerImage: null,
     winners: {
