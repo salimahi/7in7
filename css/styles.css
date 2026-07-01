@@ -284,11 +284,22 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 }
 
 .hero-tagline-hw {
-  font-family: 'Homemade Apple', cursive;
+  font-family: 'Geist Mono', monospace;
   font-size: clamp(0.8rem, 1.6vw, 1.35rem);
   color: #1A1714;
   line-height: 1.6;
   margin-bottom: 2.5rem;
+}
+
+.hero-tagline-strike {
+  color: #8c6737;
+  text-decoration: line-through;
+}
+
+.hero-tagline-ha {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 1.5em;
+  color: #1A1714;
 }
 
 /* Hero handwritten correction */
