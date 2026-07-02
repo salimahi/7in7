@@ -115,7 +115,7 @@
               <a href="register.html" class="btn btn-primary">Register to Enter</a>
             </div>
             <div class="prize-callout" style="margin-top:1.5rem;">
-              <strong>New to 7 in 7?</strong> Read the <a href="rules.html" style="color:var(--purple-light);">rules</a> before you write. Scripts must be no more than 7 pages, in PDF format, in standard screenplay format, with no author name in the document.
+              <strong>New to Write 7 in 7?</strong> Read the <a href="rules.html" style="color:var(--purple-light);">rules</a> before you write. Scripts must be no more than 7 pages, in PDF format, in standard screenplay format, with no author name in the document.
             </div>
           </div>
         </section>`;
