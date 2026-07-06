@@ -103,19 +103,26 @@
               <div class="prompt-meta">
                 ${statusBadge('open', 'Open')}
                 ${typeBadge(active.type)}
-                <div class="prompt-meta-item">
-                  <span>📅</span>
-                  <span>Prompt released: <strong>${fmtReveal(active.revealAt)}</strong></span>
-                </div>
-                <div class="prompt-meta-item">
-                  <span>⏰</span>
-                  <span>Submissions close: <strong>${fmtDeadline(active.deadline)}</strong></span>
-                </div>
               </div>
-              <a href="register.html" class="btn btn-primary">Register to Enter</a>
             </div>
             <div class="prize-callout" style="margin-top:1.5rem;">
-              <strong>New to Write 7 in 7?</strong> Read the <a href="rules.html" style="color:var(--purple-light);">rules</a> before you write. Scripts must be no more than 7 pages, in PDF format, in standard screenplay format, with no author name in the document.
+              <strong>Think you could have written something for this prompt?</strong> Submit a late entry or purchase an annual subscription to join this cycle.
+            </div>
+            <div class="late-entry-callout" style="margin-top:1.5rem;">
+              <div class="late-entry-options">
+                <div class="late-entry-option">
+                  <stripe-buy-button
+                    buy-button-id="buy_btn_1TmDDAPo30z6bWSw8R1jJU02"
+                    publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
+                  ></stripe-buy-button>
+                </div>
+                <div class="late-entry-option featured">
+                  <stripe-buy-button
+                    buy-button-id="buy_btn_1TmDExPo30z6bWSwdEuGNMca"
+                    publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
+                  ></stripe-buy-button>
+                </div>
+              </div>
             </div>
           </div>
         </section>`;
