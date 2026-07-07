@@ -47,6 +47,12 @@
     return `${mo} ${d1} – ${d2}, ${yr}`;
   }
 
+  function fmtResultsDate(revealIso) {
+    const mo = fmt(revealIso, { month: 'long' });
+    const yr = fmt(revealIso, { year: 'numeric' });
+    return `${mo} 22, ${yr}`;
+  }
+
   // ── Helpers ─────────────────────────────────────────────────────────────────
 
   function statusBadge(cls, label) {
@@ -98,15 +104,15 @@
             <div class="prompt-current">
               <p class="prompt-cycle-label">${escHtml(active.cycle)}</p>
               <p class="prompt-month">${fmtWindow(active.revealAt, active.deadline)}</p>
-              ${active.image ? `<img src="${escHtml(active.image)}" alt="${escHtml(active.cycle)} thumbnail" class="prompt-thumbnail" />` : ''}
-              <p class="prompt-text">${escHtml(active.text)}</p>
               <div class="prompt-meta">
                 ${statusBadge('open', 'Open')}
                 ${typeBadge(active.type)}
               </div>
+              ${active.image ? `<img src="${escHtml(active.image)}" alt="${escHtml(active.cycle)} thumbnail" class="prompt-thumbnail" />` : ''}
+              <p class="prompt-text">${escHtml(active.text)}</p>
             </div>
             <div class="prize-callout" style="margin-top:1.5rem;">
-              <strong>Think you could have written something for this prompt?</strong> Submit a late entry or purchase an annual subscription to join this cycle.
+              <p class="prompt-cta-text"><strong>Think you could have written something for this prompt?</strong> Submit a late entry or purchase an annual subscription to join this cycle.</p>
             </div>
             <div class="late-entry-callout" style="margin-top:1.5rem;">
               <div class="late-entry-options">
@@ -204,7 +210,7 @@
           <span style="font-size:2rem;">📂</span>
           <p>Previous prompts and winners will appear here after each cycle closes.</p>
           ${archive.length === 0 && active
-            ? `<p style="margin-top:0.35rem; font-size:0.85rem;">Check back after ${fmtDeadline(active.deadline)}.</p>`
+            ? `<p style="margin-top:0.35rem; font-size:0.85rem;">Check back after ${fmtResultsDate(active.revealAt)}.</p>`
             : ''}
         </div>`;
     } else {
