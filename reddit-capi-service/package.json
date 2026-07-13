@@ -1,0 +1,17 @@
+{
+  "name": "reddit-capi-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Stripe webhook -> Reddit Conversions API bridge for write7in7.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "stripe": "^17.0.0"
+  }
+}

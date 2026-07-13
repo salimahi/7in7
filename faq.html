@@ -16,6 +16,13 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://write7in7.com/img/og-image.png" />
+
+  <!-- Reddit Pixel -->
+  <script>
+  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jbm8qht64ix2",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_jbm8qht64ix2');rdt('track', 'PageVisit');
+  </script>
+  <!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
+  <!-- End Reddit Pixel -->
 </head>
 <body>
 
@@ -91,7 +98,7 @@
         <div class="faq-item">
           <div class="faq-question">Can I wait until after I see the prompt to sign up?</div>
           <div class="faq-answer">
-            <p>Sure. Late entry is available after the prompt drops at 7pm ET on the 7th for <a href="https://buy.stripe.com/14AdRbaYzb063N1eY14wM01">$35 per cycle</a>. The submission deadline is still 7pm ET on the 14th, so you'll have less time to write than someone who registered before the prompt. But you do you.</p>
+            <p>Sure. Late entry is available after the prompt drops at 7pm ET on the 7th for <a id="late-entry-payment-link" href="https://buy.stripe.com/14AdRbaYzb063N1eY14wM01">$35 per cycle</a>. The submission deadline is still 7pm ET on the 14th, so you'll have less time to write than someone who registered before the prompt. But you do you.</p>
           </div>
         </div>
 
@@ -361,6 +368,7 @@
     </div>
   </footer>
 
+  <script src="js/reddit-attribution.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

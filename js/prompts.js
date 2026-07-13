@@ -4,6 +4,8 @@
   const root = document.getElementById('prompts-root');
   if (!root || typeof PROMPTS === 'undefined') return;
 
+  const clickId = window.W7I7Attribution ? window.W7I7Attribution.getStoredClickId() : '';
+
   const now = Date.now();
 
   // Sort chronologically
@@ -120,12 +122,14 @@
                   <stripe-buy-button
                     buy-button-id="buy_btn_1TmDDAPo30z6bWSw8R1jJU02"
                     publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
+                    ${clickId ? `client-reference-id="${escHtml(clickId)}"` : ''}
                   ></stripe-buy-button>
                 </div>
                 <div class="late-entry-option featured">
                   <stripe-buy-button
                     buy-button-id="buy_btn_1TmDExPo30z6bWSwdEuGNMca"
                     publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
+                    ${clickId ? `client-reference-id="${escHtml(clickId)}"` : ''}
                   ></stripe-buy-button>
                 </div>
               </div>
