@@ -175,18 +175,23 @@
   <section class="section section-alt">
     <div class="container" style="max-width: 860px;">
 
+      <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
       <div class="stripe-options-row">
         <div class="stripe-option">
-          <p class="stripe-option-label">Single Cycle Entry</p>
-          <p class="stripe-option-price">US$25</p>
-          <button class="btn btn-primary" data-checkout-product="register_single" style="width:100%;">Register</button>
+          <stripe-buy-button
+            buy-button-id="buy_btn_1TmDBgPo30z6bWSwhFzFCOH7"
+            publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
+          >
+          </stripe-buy-button>
         </div>
 
         <div class="stripe-option featured">
-          <p class="stripe-option-label">Annual Subscription</p>
-          <p class="stripe-option-price">US$20<span style="font-size:1rem;">/mo</span></p>
-          <p class="stripe-option-savings">US$240 billed annually</p>
-          <button class="btn btn-primary" data-checkout-product="subscription_annual" style="width:100%;">Subscribe</button>
+          <stripe-buy-button
+            buy-button-id="buy_btn_1TmDExPo30z6bWSwdEuGNMca"
+            publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
+          >
+          </stripe-buy-button>
         </div>
       </div>
 
