@@ -12,7 +12,10 @@
       "Read(//tmp/**)",
       "Bash(curl -s https://write7in7.com/css/styles.css -o /tmp/live_styles.css)",
       "Bash(curl *)",
-      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"G:\\\\My Drive\\\\CAREER\\\\7 in 7\\\\7in7\\\\7in7logos\\\\7in7 Black n Gold.png\"\\); \"$\\($img.Width\\)x$\\($img.Height\\)\"; $img.Dispose\\(\\))"
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"G:\\\\My Drive\\\\CAREER\\\\7 in 7\\\\7in7\\\\7in7logos\\\\7in7 Black n Gold.png\"\\); \"$\\($img.Width\\)x$\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "Bash(py -3 -m http.server 8791 --bind 127.0.0.1)",
+      "Bash(echo \"started with pid $!\")",
+      "Bash(pkill -f \"http.server 8791\")"
     ]
   }
 }
