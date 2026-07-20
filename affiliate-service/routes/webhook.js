@@ -36,16 +36,29 @@ router.post(
         return;
       }
 
+      const customerEmail = (session.customer_details && session.customer_details.email) || null;
+
       let affiliateId = null;
       let affiliateName = null;
       if (affCode) {
-        const { rows } = await db.query(
-          'SELECT id, name FROM affiliates WHERE ref_code = $1',
-          [affCode]
-        );
-        if (rows.length > 0) {
-          affiliateId = rows[0].id;
-          affiliateName = rows[0].name;
+        let isReturningCustomer = false;
+        if (customerEmail) {
+          const { rows: priorRows } = await db.query(
+            'SELECT 1 FROM conversions WHERE lower(customer_email) = lower($1) LIMIT 1',
+            [customerEmail]
+          );
+          isReturningCustomer = priorRows.length > 0;
+        }
+
+        if (!isReturningCustomer) {
+          const { rows } = await db.query(
+            'SELECT id, name FROM affiliates WHERE ref_code = $1',
+            [affCode]
+          );
+          if (rows.length > 0) {
+            affiliateId = rows[0].id;
+            affiliateName = rows[0].name;
+          }
         }
       }
 
@@ -61,7 +74,7 @@ router.post(
           productType,
           session.amount_total,
           product.commissionCents,
-          (session.customer_details && session.customer_details.email) || null,
+          customerEmail,
         ]
       );
 
