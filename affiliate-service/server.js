@@ -9,9 +9,9 @@ const reportRoute = require('./routes/report');
 const app = express();
 
 app.use(webhookRoute); // must be mounted before any express.json() body parsing
-app.use(clicksRoute);
-app.use(checkoutSessionsRoute);
-app.use(adminRoute);
+app.use('/clicks', clicksRoute);
+app.use('/checkout-sessions', checkoutSessionsRoute);
+app.use('/admin', adminRoute);
 app.use(reportRoute);
 
 const PORT = process.env.PORT || 3000;

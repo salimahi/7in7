@@ -17,48 +17,49 @@ const PRODUCT_LABELS = {
 router.get('/a/:report_token', async (req, res) => {
   const { report_token } = req.params;
 
-  const { rows: affiliateRows } = await db.query(
-    'SELECT id, name FROM affiliates WHERE report_token = $1',
-    [report_token]
-  );
-
   res.set('Cache-Control', 'no-store');
 
-  if (affiliateRows.length === 0) {
-    res.status(404).send('Not found');
-    return;
-  }
+  try {
+    const { rows: affiliateRows } = await db.query(
+      'SELECT id, name FROM affiliates WHERE report_token = $1',
+      [report_token]
+    );
 
-  const affiliate = affiliateRows[0];
+    if (affiliateRows.length === 0) {
+      res.status(404).send('Not found');
+      return;
+    }
 
-  const { rows: clickRows } = await db.query(
-    'SELECT COUNT(*)::int AS count FROM clicks WHERE affiliate_id = $1',
-    [affiliate.id]
-  );
+    const affiliate = affiliateRows[0];
 
-  const { rows: byProduct } = await db.query(
-    `SELECT product_type, COUNT(*)::int AS count, SUM(commission_cents)::int AS earned_cents
-     FROM conversions WHERE affiliate_id = $1 GROUP BY product_type`,
-    [affiliate.id]
-  );
+    const { rows: clickRows } = await db.query(
+      'SELECT COUNT(*)::int AS count FROM clicks WHERE affiliate_id = $1',
+      [affiliate.id]
+    );
 
-  const { rows: paidRows } = await db.query(
-    'SELECT COALESCE(SUM(amount_cents), 0)::int AS paid_cents FROM payouts WHERE affiliate_id = $1',
-    [affiliate.id]
-  );
+    const { rows: byProduct } = await db.query(
+      `SELECT product_type, COUNT(*)::int AS count, SUM(commission_cents)::int AS earned_cents
+       FROM conversions WHERE affiliate_id = $1 GROUP BY product_type`,
+      [affiliate.id]
+    );
 
-  const totalEarnedCents = byProduct.reduce((sum, r) => sum + r.earned_cents, 0);
-  const paidCents = paidRows[0].paid_cents;
-  const balanceCents = totalEarnedCents - paidCents;
+    const { rows: paidRows } = await db.query(
+      'SELECT COALESCE(SUM(amount_cents), 0)::int AS paid_cents FROM payouts WHERE affiliate_id = $1',
+      [affiliate.id]
+    );
 
-  const breakdownRows = byProduct.map(r => `
-    <tr>
-      <td>${escHtml(PRODUCT_LABELS[r.product_type] || r.product_type)}</td>
-      <td>${r.count}</td>
-      <td>${formatCents(r.earned_cents)}</td>
-    </tr>`).join('');
+    const totalEarnedCents = byProduct.reduce((sum, r) => sum + r.earned_cents, 0);
+    const paidCents = paidRows[0].paid_cents;
+    const balanceCents = totalEarnedCents - paidCents;
 
-  res.send(`<!doctype html>
+    const breakdownRows = byProduct.map(r => `
+      <tr>
+        <td>${escHtml(PRODUCT_LABELS[r.product_type] || r.product_type)}</td>
+        <td>${r.count}</td>
+        <td>${formatCents(r.earned_cents)}</td>
+      </tr>`).join('');
+
+    res.send(`<!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
@@ -83,6 +84,10 @@ router.get('/a/:report_token', async (req, res) => {
   <p class="stat"><strong>Balance due: ${formatCents(balanceCents)}</strong></p>
 </body>
 </html>`);
+  } catch (err) {
+    console.error(`[report] failed to render report for token ${report_token}: ${err.message}`);
+    res.status(500).send('Something went wrong');
+  }
 });
 
 module.exports = router;

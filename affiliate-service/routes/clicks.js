@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 
-router.post('/clicks', express.json(), async (req, res) => {
+router.post('/', express.json(), async (req, res) => {
   const { refCode, landingPage, referrer } = req.body || {};
 
   res.status(204).end();

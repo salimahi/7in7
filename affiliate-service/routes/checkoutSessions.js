@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 
-router.post('/checkout-sessions', express.json(), async (req, res) => {
+router.post('/', express.json(), async (req, res) => {
   const { productType, affCode, rdtCid } = req.body || {};
 
   const product = PRODUCT_CONFIG[productType];

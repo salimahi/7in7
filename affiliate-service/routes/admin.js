@@ -103,12 +103,17 @@ function renderAdminPage(affiliates) {
 </html>`;
 }
 
-router.get('/admin', async (req, res) => {
-  const affiliates = await fetchAffiliates();
-  res.set('Cache-Control', 'no-store').send(renderAdminPage(affiliates));
+router.get('/', async (req, res) => {
+  try {
+    const affiliates = await fetchAffiliates();
+    res.set('Cache-Control', 'no-store').send(renderAdminPage(affiliates));
+  } catch (err) {
+    console.error(`[admin] failed to load dashboard: ${err.message}`);
+    res.status(500).send('Something went wrong');
+  }
 });
 
-router.post('/admin/affiliates', express.urlencoded({ extended: false }), async (req, res) => {
+router.post('/affiliates', express.urlencoded({ extended: false }), async (req, res) => {
   const { name, email } = req.body || {};
   if (!name) {
     res.status(400).send('name is required');
@@ -135,7 +140,7 @@ router.post('/admin/affiliates', express.urlencoded({ extended: false }), async 
   res.status(500).send('failed to generate a unique ref code, try again');
 });
 
-router.post('/admin/payouts', express.urlencoded({ extended: false }), async (req, res) => {
+router.post('/payouts', express.urlencoded({ extended: false }), async (req, res) => {
   const { affiliateId, amount, note } = req.body || {};
   const amountCents = Math.round(parseFloat(amount) * 100);
 
@@ -144,31 +149,41 @@ router.post('/admin/payouts', express.urlencoded({ extended: false }), async (re
     return;
   }
 
-  await db.query(
-    'INSERT INTO payouts (affiliate_id, amount_cents, note) VALUES ($1, $2, $3)',
-    [affiliateId, amountCents, note || null]
-  );
-  res.redirect('/admin');
+  try {
+    await db.query(
+      'INSERT INTO payouts (affiliate_id, amount_cents, note) VALUES ($1, $2, $3)',
+      [affiliateId, amountCents, note || null]
+    );
+    res.redirect('/admin');
+  } catch (err) {
+    console.error(`[admin] failed to record payout: ${err.message}`);
+    res.status(500).send('failed to record payout');
+  }
 });
 
-router.get('/admin/export.csv', async (req, res) => {
-  const { rows } = await db.query(`
-    SELECT c.created_at, a.name AS affiliate_name, a.ref_code, c.product_type,
-           c.amount_total_cents, c.commission_cents, c.customer_email, c.stripe_session_id
-    FROM conversions c
-    LEFT JOIN affiliates a ON a.id = c.affiliate_id
-    ORDER BY c.created_at DESC
-  `);
+router.get('/export.csv', async (req, res) => {
+  try {
+    const { rows } = await db.query(`
+      SELECT c.created_at, a.name AS affiliate_name, a.ref_code, c.product_type,
+             c.amount_total_cents, c.commission_cents, c.customer_email, c.stripe_session_id
+      FROM conversions c
+      LEFT JOIN affiliates a ON a.id = c.affiliate_id
+      ORDER BY c.created_at DESC
+    `);
 
-  const header = 'created_at,affiliate_name,ref_code,product_type,amount_total_cents,commission_cents,customer_email,stripe_session_id';
-  const csvEscape = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
-  const lines = rows.map(r => [
-    r.created_at.toISOString(), r.affiliate_name, r.ref_code, r.product_type,
-    r.amount_total_cents, r.commission_cents, r.customer_email, r.stripe_session_id,
-  ].map(csvEscape).join(','));
+    const header = 'created_at,affiliate_name,ref_code,product_type,amount_total_cents,commission_cents,customer_email,stripe_session_id';
+    const csvEscape = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
+    const lines = rows.map(r => [
+      r.created_at.toISOString(), r.affiliate_name, r.ref_code, r.product_type,
+      r.amount_total_cents, r.commission_cents, r.customer_email, r.stripe_session_id,
+    ].map(csvEscape).join(','));
 
-  res.set('Content-Type', 'text/csv').set('Content-Disposition', 'attachment; filename="conversions.csv"');
-  res.send([header, ...lines].join('\n'));
+    res.set('Content-Type', 'text/csv').set('Content-Disposition', 'attachment; filename="conversions.csv"');
+    res.send([header, ...lines].join('\n'));
+  } catch (err) {
+    console.error(`[admin] failed to export CSV: ${err.message}`);
+    res.status(500).send('failed to export CSV');
+  }
 });
 
 module.exports = router;
