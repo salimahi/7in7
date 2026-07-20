@@ -117,6 +117,11 @@
       margin-bottom: 0.3rem;
     }
 
+    .stripe-option-price .currency {
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
     .stripe-option-desc {
       font-size: 0.88rem;
       color: var(--text-muted);
@@ -125,6 +130,7 @@
     }
 
     .stripe-option-savings {
+      font-family: 'Geist Mono', monospace;
       font-size: 0.85rem;
       color: var(--gold-light);
       font-weight: 500;
@@ -178,13 +184,13 @@
       <div class="stripe-options-row">
         <div class="stripe-option">
           <p class="stripe-option-label">Single Cycle Entry</p>
-          <p class="stripe-option-price">US$25</p>
+          <p class="stripe-option-price"><span class="currency">US</span>$25</p>
           <button class="btn btn-primary" data-checkout-product="register_single" style="width:100%;">Register</button>
         </div>
 
         <div class="stripe-option featured">
           <p class="stripe-option-label">Annual Subscription</p>
-          <p class="stripe-option-price">US$20<span style="font-size:1rem;">/mo</span></p>
+          <p class="stripe-option-price"><span class="currency">US</span>$20<span style="font-size:1rem;">/mo</span></p>
           <p class="stripe-option-savings">US$240 billed annually</p>
           <button class="btn btn-primary" data-checkout-product="subscription_annual" style="width:100%;">Subscribe</button>
         </div>
