@@ -172,7 +172,6 @@
             <div class="prompt-current">
               <p class="prompt-cycle-label">${escHtml(last.cycle)}</p>
               <p class="prompt-month">${fmtWindow(last.revealAt, last.deadline)}</p>
-              <p class="prompt-text">${escHtml(last.text)}</p>
               <div class="prompt-meta">
                 ${statusBadge('closed', 'Closed')}
                 ${typeBadge(last.type)}
@@ -181,6 +180,8 @@
                   <span>Submissions closed: <strong>${fmtDeadline(last.deadline)}</strong></span>
                 </div>
               </div>
+              ${last.image ? `<img src="${escHtml(last.image)}" alt="${escHtml(last.cycle)} thumbnail" class="prompt-thumbnail" />` : ''}
+              <p class="prompt-text">${escHtml(last.text)}</p>
               <p style="color:var(--text-muted); font-size:0.95rem; margin-top:0.5rem;">${nextLine}</p>
             </div>
           </div>
