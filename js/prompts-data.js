@@ -31,6 +31,12 @@
     (e.g. img/prompts/winners/2026-07.jpg), and set winnerImage to that path.
     Shows in the Past Prompts archive card alongside the winners list.
 
+  RESULTS REVEAL:
+    Optional. Set resultsRevealAt (ISO UTC, same format as revealAt/deadline)
+    to control exactly when winners + winnerImage become visible. Until that
+    time, the cycle shows with no winners at all, even after its deadline has
+    passed. If omitted, winners appear as soon as the deadline passes.
+
   TYPE:
     Optional. Free-text tag (e.g. 'Dialogue Prompt', 'Visual Prompt',
     'Genre Bender'). Shown as a badge next to the Open/Closed status,
@@ -38,17 +44,18 @@
 
   TEMPLATE:
   {
-    cycle:       'Month YYYY | Cycle ##',
-    month:       'Month YYYY',
-    revealAt:    'YYYY-MM-DDTHH:MM:00Z',
-    deadline:    'YYYY-MM-DDTHH:MM:00Z',
-    text:        'The prompt text goes here.',
-    type:        null,   // e.g. 'Dialogue Prompt'
-    image:       null,   // e.g. 'img/prompts/2026-07.jpg'
-    winnerImage: null,   // e.g. 'img/prompts/winners/2026-07.jpg'
+    cycle:           'Month YYYY | Cycle ##',
+    month:           'Month YYYY',
+    revealAt:        'YYYY-MM-DDTHH:MM:00Z',
+    deadline:        'YYYY-MM-DDTHH:MM:00Z',
+    resultsRevealAt: null,   // e.g. 'YYYY-MM-DDTHH:MM:00Z' — gates winner reveal
+    text:            'The prompt text goes here.',
+    type:            null,   // e.g. 'Dialogue Prompt'
+    image:           null,   // e.g. 'img/prompts/2026-07.jpg'
+    winnerImage:     null,   // e.g. 'img/prompts/winners/2026-07.jpg'
     winners: {
-      first:  null,   // { name: 'Writer Name', title: 'Script Title' }
-      second: null,
+      first:  null,   // { name: 'Writer Name', title: 'Script Title', instagram: 'handle' }
+      second: null,   // instagram is optional; when set, it's linked to instagram.com/<handle>
       third:  null,
     },
   },
@@ -56,18 +63,19 @@
 
 const PROMPTS = [
   {
-    cycle:       'July 2026 | Cycle 01',
-    month:       'July 2026',
-    revealAt:    '2026-07-07T23:00:00Z',   // 7pm EDT
-    deadline:    '2026-07-14T23:00:00Z',   // 7pm EDT
-    text:        'A photo of a phonebooth at night.',
-    type:        'Photo Prompt',
-    image:       'img/prompts/2026-07.jpg',
-    winnerImage: null,
+    cycle:           'July 2026 | Cycle 01',
+    month:           'July 2026',
+    revealAt:        '2026-07-07T23:00:00Z',   // 7pm EDT
+    deadline:        '2026-07-14T23:00:00Z',   // 7pm EDT
+    resultsRevealAt: '2026-07-22T23:00:00Z',   // 7pm EDT
+    text:            'A photo of a phonebooth at night.',
+    type:            'Photo Prompt',
+    image:           'img/prompts/2026-07.jpg',
+    winnerImage:     'img/prompts/winners/2026-07.png',
     winners: {
-      first:  null,
-      second: null,
-      third:  null,
+      first:  { name: 'Steve Rodgers', title: 'Seven Minutes, One Chance' },
+      second: { name: 'John Searson',  title: 'For Me?', instagram: 'JSearsonJr' },
+      third:  { name: 'Darius Smith',  title: 'Hello?',  instagram: 'hashharborproductions' },
     },
   },
 

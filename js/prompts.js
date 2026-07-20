@@ -53,6 +53,10 @@
     return `${mo} 22, ${yr}`;
   }
 
+  function resultsReady(p) {
+    return new Date(p.resultsRevealAt || p.deadline) <= now;
+  }
+
   // ── Helpers ─────────────────────────────────────────────────────────────────
 
   function statusBadge(cls, label) {
@@ -71,7 +75,9 @@
     const row = (place, label, w) => w
       ? `<div class="winner-row">
            <span class="winner-place">${label}</span>
-           <span class="winner-name"><strong>${escHtml(w.title)}</strong> by ${escHtml(w.name)}</span>
+           <span class="winner-name"><strong>${escHtml(w.title)}</strong> by ${escHtml(w.name)}${
+             w.instagram ? ` <a href="https://www.instagram.com/${escHtml(w.instagram)}/" target="_blank" rel="noopener">@${escHtml(w.instagram)}</a>` : ''
+           }</span>
          </div>`
       : '';
 
@@ -182,6 +188,7 @@
               </div>
               ${last.image ? `<img src="${escHtml(last.image)}" alt="${escHtml(last.cycle)} thumbnail" class="prompt-thumbnail" />` : ''}
               <p class="prompt-text">${escHtml(last.text)}</p>
+              ${resultsReady(last) ? winnersHTML(last.winners, last.winnerImage) : ''}
               <p style="color:var(--text-muted); font-size:0.95rem; margin-top:0.5rem;">${nextLine}</p>
               <div class="btn-group" style="margin-top:1.5rem;">
                 <a href="register.html" class="btn btn-primary">Reserve A Spot</a>
@@ -227,7 +234,7 @@
             </div>
           </div>
           <p class="archive-prompt">&ldquo;${escHtml(p.text)}&rdquo;</p>
-          ${winnersHTML(p.winners, p.winnerImage)}
+          ${resultsReady(p) ? winnersHTML(p.winners, p.winnerImage) : ''}
         </div>`).join('');
       inner = `<div class="archive-grid">${cards}</div>`;
     }
