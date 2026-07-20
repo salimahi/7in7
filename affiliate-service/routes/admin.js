@@ -12,6 +12,10 @@ function escHtml(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+function formatDate(date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
 async function fetchAffiliates() {
   const { rows } = await db.query(`
     SELECT
@@ -19,14 +23,23 @@ async function fetchAffiliates() {
       COALESCE(clicks.count, 0)::int AS click_count,
       COALESCE(conv.count, 0)::int AS conversion_count,
       COALESCE(conv.earned_cents, 0)::int AS earned_cents,
-      COALESCE(payouts.paid_cents, 0)::int AS paid_cents
+      COALESCE(payouts.paid_cents, 0)::int AS paid_cents,
+      payouts.last_paid_at,
+      COALESCE(since_last.count, 0)::int AS conversions_since_payout,
+      COALESCE(since_last.earned_cents, 0)::int AS earned_since_payout_cents
     FROM affiliates a
     LEFT JOIN (SELECT affiliate_id, COUNT(*) AS count FROM clicks GROUP BY affiliate_id) clicks
       ON clicks.affiliate_id = a.id
     LEFT JOIN (SELECT affiliate_id, COUNT(*) AS count, SUM(commission_cents) AS earned_cents FROM conversions GROUP BY affiliate_id) conv
       ON conv.affiliate_id = a.id
-    LEFT JOIN (SELECT affiliate_id, SUM(amount_cents) AS paid_cents FROM payouts GROUP BY affiliate_id) payouts
+    LEFT JOIN (SELECT affiliate_id, SUM(amount_cents) AS paid_cents, MAX(paid_at) AS last_paid_at FROM payouts GROUP BY affiliate_id) payouts
       ON payouts.affiliate_id = a.id
+    LEFT JOIN LATERAL (
+      SELECT COUNT(*)::int AS count, COALESCE(SUM(commission_cents), 0)::int AS earned_cents
+      FROM conversions c2
+      WHERE c2.affiliate_id = a.id
+        AND c2.created_at > COALESCE(payouts.last_paid_at, '-infinity'::timestamptz)
+    ) since_last ON true
     ORDER BY a.created_at DESC
   `);
   return rows;
@@ -44,6 +57,8 @@ function renderAdminPage(affiliates) {
         <td>${a.conversion_count}</td>
         <td>${formatCents(a.earned_cents)}</td>
         <td>${formatCents(a.paid_cents)}</td>
+        <td>${a.last_paid_at ? formatDate(a.last_paid_at) : '—'}</td>
+        <td>${a.conversions_since_payout} (${formatCents(a.earned_since_payout_cents)})</td>
         <td>${formatCents(balanceCents)}</td>
       </tr>`;
   }).join('');
@@ -77,10 +92,11 @@ function renderAdminPage(affiliates) {
     <thead>
       <tr>
         <th>Name</th><th>Ref code</th><th>Report link</th><th>Clicks</th>
-        <th>Conversions</th><th>Earned</th><th>Paid</th><th>Balance due</th>
+        <th>Conversions</th><th>Earned</th><th>Paid</th><th>Last Paid</th>
+        <th>Since Last Payout</th><th>Balance due</th>
       </tr>
     </thead>
-    <tbody>${rows || '<tr><td colspan="8">No affiliates yet</td></tr>'}</tbody>
+    <tbody>${rows || '<tr><td colspan="10">No affiliates yet</td></tr>'}</tbody>
   </table>
 
   <h2>Add affiliate</h2>

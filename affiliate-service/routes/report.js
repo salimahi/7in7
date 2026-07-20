@@ -8,6 +8,10 @@ function escHtml(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+function formatDate(date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
 const PRODUCT_LABELS = {
   register_single: 'Single Cycle Entry',
   late_entry: 'Late Entry',
@@ -43,13 +47,22 @@ router.get('/a/:report_token', async (req, res) => {
       [affiliate.id]
     );
 
-    const { rows: paidRows } = await db.query(
-      'SELECT COALESCE(SUM(amount_cents), 0)::int AS paid_cents FROM payouts WHERE affiliate_id = $1',
+    const { rows: payoutRows } = await db.query(
+      'SELECT amount_cents, note, paid_at FROM payouts WHERE affiliate_id = $1 ORDER BY paid_at DESC',
       [affiliate.id]
     );
 
+    const lastPaidAt = payoutRows.length > 0 ? payoutRows[0].paid_at : null;
+
+    const { rows: sinceLastPayoutRows } = await db.query(
+      `SELECT COUNT(*)::int AS count, COALESCE(SUM(commission_cents), 0)::int AS earned_cents
+       FROM conversions WHERE affiliate_id = $1 AND created_at > $2`,
+      [affiliate.id, lastPaidAt || new Date(0)]
+    );
+    const sinceLastPayout = sinceLastPayoutRows[0];
+
     const totalEarnedCents = byProduct.reduce((sum, r) => sum + r.earned_cents, 0);
-    const paidCents = paidRows[0].paid_cents;
+    const paidCents = payoutRows.reduce((sum, r) => sum + r.amount_cents, 0);
     const balanceCents = totalEarnedCents - paidCents;
 
     const breakdownRows = byProduct.map(r => `
@@ -57,6 +70,13 @@ router.get('/a/:report_token', async (req, res) => {
         <td>${escHtml(PRODUCT_LABELS[r.product_type] || r.product_type)}</td>
         <td>${r.count}</td>
         <td>${formatCents(r.earned_cents)}</td>
+      </tr>`).join('');
+
+    const payoutHistoryRows = payoutRows.map(r => `
+      <tr>
+        <td>${formatDate(r.paid_at)}</td>
+        <td>${formatCents(r.amount_cents)}</td>
+        <td>${escHtml(r.note || '')}</td>
       </tr>`).join('');
 
     res.send(`<!doctype html>
@@ -82,6 +102,13 @@ router.get('/a/:report_token', async (req, res) => {
   <p class="stat">Total earned: ${formatCents(totalEarnedCents)}</p>
   <p class="stat">Total paid: ${formatCents(paidCents)}</p>
   <p class="stat"><strong>Balance due: ${formatCents(balanceCents)}</strong></p>
+  <p class="stat">Conversions since last payout: ${sinceLastPayout.count} (${formatCents(sinceLastPayout.earned_cents)})</p>
+
+  <h2>Payout history</h2>
+  <table>
+    <thead><tr><th>Date</th><th>Amount</th><th>Note</th></tr></thead>
+    <tbody>${payoutHistoryRows || '<tr><td colspan="3">No payouts yet</td></tr>'}</tbody>
+  </table>
 </body>
 </html>`);
   } catch (err) {
