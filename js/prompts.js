@@ -4,8 +4,6 @@
   const root = document.getElementById('prompts-root');
   if (!root || typeof PROMPTS === 'undefined') return;
 
-  const clickId = window.W7I7Attribution ? window.W7I7Attribution.getStoredClickId() : '';
-
   const now = Date.now();
 
   // Sort chronologically
@@ -119,18 +117,15 @@
             <div class="late-entry-callout" style="margin-top:1.5rem;">
               <div class="late-entry-options">
                 <div class="late-entry-option">
-                  <stripe-buy-button
-                    buy-button-id="buy_btn_1TmDDAPo30z6bWSw8R1jJU02"
-                    publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
-                    ${clickId ? `client-reference-id="${escHtml(clickId)}"` : ''}
-                  ></stripe-buy-button>
+                  <p style="font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.25rem;">Late Entry</p>
+                  <p style="font-family:'Cormorant', serif; font-size:2rem; font-weight:600; color:var(--dark); margin-bottom:0.75rem;">US$35</p>
+                  <button class="btn btn-primary" data-checkout-product="late_entry">Register</button>
                 </div>
                 <div class="late-entry-option featured">
-                  <stripe-buy-button
-                    buy-button-id="buy_btn_1TmDExPo30z6bWSwdEuGNMca"
-                    publishable-key="pk_live_51Tm0S3Po30z6bWSwFSzsAywtQBKZ59H7jawfbSGlRYdfwGCo1qwNjCq0cfzWBYMlAAdvzH2JHop8mm2lxYZTRIDp00I3HnzBdp"
-                    ${clickId ? `client-reference-id="${escHtml(clickId)}"` : ''}
-                  ></stripe-buy-button>
+                  <p style="font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.25rem;">Annual Subscription</p>
+                  <p style="font-family:'Cormorant', serif; font-size:2rem; font-weight:600; color:var(--dark); margin-bottom:0.25rem;">US$20<span style="font-size:1rem;">/mo</span></p>
+                  <p style="font-size:0.8rem; color:var(--gold-light); font-weight:500; margin-bottom:0.75rem;">US$240 billed annually</p>
+                  <button class="btn btn-primary" data-checkout-product="subscription_annual">Subscribe</button>
                 </div>
               </div>
             </div>

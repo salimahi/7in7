@@ -1,0 +1,19 @@
+{
+  "name": "affiliate-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Affiliate link tracking, Stripe checkout attribution, and payout reporting for write7in7.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "pg": "^8.13.0",
+    "stripe": "^17.0.0"
+  }
+}

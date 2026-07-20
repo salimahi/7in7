@@ -1555,3 +1555,38 @@ tbody td:nth-child(2) {
   .form-footer { flex-direction: column; align-items: stretch; }
   .btn-submit { width: 100%; }
 }
+
+.checkout-banner {
+  max-width: 480px;
+  margin: 1.5rem auto 0;
+  padding: 0.85rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.checkout-banner-success {
+  background: rgba(180, 154, 66, 0.12);
+  border: 1px solid var(--gold);
+  color: var(--dark);
+}
+
+.checkout-banner-cancelled {
+  background: rgba(107, 99, 82, 0.1);
+  border: 1px solid var(--text-muted);
+  color: var(--text-muted);
+}
+
+.text-checkout-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: var(--gold-dark);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.text-checkout-link:hover {
+  color: var(--dark);
+}
