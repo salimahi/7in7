@@ -183,6 +183,9 @@
               ${last.image ? `<img src="${escHtml(last.image)}" alt="${escHtml(last.cycle)} thumbnail" class="prompt-thumbnail" />` : ''}
               <p class="prompt-text">${escHtml(last.text)}</p>
               <p style="color:var(--text-muted); font-size:0.95rem; margin-top:0.5rem;">${nextLine}</p>
+              <div class="btn-group" style="margin-top:1.5rem;">
+                <a href="register.html" class="btn btn-primary">Reserve A Spot</a>
+              </div>
             </div>
           </div>
         </section>`;
