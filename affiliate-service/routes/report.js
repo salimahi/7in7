@@ -47,6 +47,12 @@ router.get('/a/:report_token', async (req, res) => {
       [affiliate.id]
     );
 
+    const { rows: referrals } = await db.query(
+      `SELECT product_type, customer_email, commission_cents, created_at
+       FROM conversions WHERE affiliate_id = $1 ORDER BY created_at DESC`,
+      [affiliate.id]
+    );
+
     const { rows: payoutRows } = await db.query(
       'SELECT amount_cents, note, paid_at FROM payouts WHERE affiliate_id = $1 ORDER BY paid_at DESC',
       [affiliate.id]
@@ -70,6 +76,14 @@ router.get('/a/:report_token', async (req, res) => {
         <td>${escHtml(PRODUCT_LABELS[r.product_type] || r.product_type)}</td>
         <td>${r.count}</td>
         <td>${formatCents(r.earned_cents)}</td>
+      </tr>`).join('');
+
+    const referralRows = referrals.map(r => `
+      <tr>
+        <td>${formatDate(r.created_at)}</td>
+        <td>${escHtml(r.customer_email || '—')}</td>
+        <td>${escHtml(PRODUCT_LABELS[r.product_type] || r.product_type)}</td>
+        <td>${formatCents(r.commission_cents)}</td>
       </tr>`).join('');
 
     const payoutHistoryRows = payoutRows.map(r => `
@@ -103,6 +117,12 @@ router.get('/a/:report_token', async (req, res) => {
   <p class="stat">Total paid: ${formatCents(paidCents)}</p>
   <p class="stat"><strong>Balance due: ${formatCents(balanceCents)}</strong></p>
   <p class="stat">Conversions since last payout: ${sinceLastPayout.count} (${formatCents(sinceLastPayout.earned_cents)})</p>
+
+  <h2>Your referrals</h2>
+  <table>
+    <thead><tr><th>Date</th><th>Email</th><th>Product</th><th>Commission</th></tr></thead>
+    <tbody>${referralRows || '<tr><td colspan="4">No referrals yet</td></tr>'}</tbody>
+  </table>
 
   <h2>Payout history</h2>
   <table>
