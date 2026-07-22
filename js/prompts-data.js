@@ -67,7 +67,7 @@ const PROMPTS = [
     month:           'July 2026',
     revealAt:        '2026-07-07T23:00:00Z',   // 7pm EDT
     deadline:        '2026-07-14T23:00:00Z',   // 7pm EDT
-    resultsRevealAt: '2026-07-22T23:00:00Z',   // 7pm EDT
+    resultsRevealAt: '2026-07-22T16:00:00Z',   // 7pm EDT
     text:            'A photo of a phonebooth at night.',
     type:            'Photo Prompt',
     image:           'img/prompts/2026-07.jpg',
@@ -84,7 +84,7 @@ const PROMPTS = [
     month:           'August 2026',
     revealAt:        '2026-08-07T23:00:00Z',   // 7pm EDT
     deadline:        '2026-08-14T23:00:00Z',   // 7pm EDT
-    resultsRevealAt: '2026-08-22T23:00:00Z',   // 7pm EDT
+    resultsRevealAt: '2026-08-22T16:00:00Z',   // 7pm EDT
     text:            'Feature a phobia of your choice.',
     type:            'Writer\'s Choice',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-08.jpg',   // e.g. 'img/prompts/2026-07.jpg'
