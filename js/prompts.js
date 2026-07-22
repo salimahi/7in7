@@ -33,10 +33,16 @@
     return `${date} at ${time} ET`;
   }
 
-  function fmtDeadline(iso) {
-    const date = fmt(iso, { month: 'long', day: 'numeric', year: 'numeric' });
-    const time = fmt(iso, { hour: 'numeric', hour12: true });
-    return `${date} at ${time} ET`;
+  function ordinal(n) {
+    const suffixes = ['th', 'st', 'nd', 'rd'];
+    const v = n % 100;
+    return n + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+  }
+
+  function fmtRevealShort(iso) {
+    const month = fmt(iso, { month: 'long' });
+    const day = Number(fmt(iso, { day: 'numeric' }));
+    return `${month} ${ordinal(day)}`;
   }
 
   function fmtWindow(revealIso, deadlineIso) {
@@ -163,41 +169,6 @@
         </section>`;
     }
 
-    if (revealed.length > 0 && !active) {
-      // Between cycles — show last cycle as closed + next teaser
-      const last = archive[0];
-      const nextLine = upcoming
-        ? `Next prompt drops <strong>${fmtReveal(upcoming.revealAt)}</strong>.`
-        : 'The next cycle will be announced soon.';
-      return `
-        <section class="section">
-          <div class="container" style="max-width:860px;">
-            <p class="section-label">Current Cycle</p>
-            <h2 class="section-title">Submissions Closed</h2>
-            <div class="gold-rule"></div>
-            <div class="prompt-current">
-              <p class="prompt-cycle-label">${escHtml(last.cycle)}</p>
-              <p class="prompt-month">${fmtWindow(last.revealAt, last.deadline)}</p>
-              ${resultsReady(last) ? winnersHTML(last.winners, last.winnerImage) : ''}
-              <div class="prompt-meta">
-                ${statusBadge('closed', 'Closed')}
-                ${typeBadge(last.type)}
-                <div class="prompt-meta-item">
-                  <span>⏰</span>
-                  <span>Submissions closed: <strong>${fmtDeadline(last.deadline)}</strong></span>
-                </div>
-              </div>
-              ${last.image ? `<img src="${escHtml(last.image)}" alt="${escHtml(last.cycle)} thumbnail" class="prompt-thumbnail" />` : ''}
-              <p class="prompt-text">${escHtml(last.text)}</p>
-              <p style="color:var(--text-muted); font-size:0.95rem; margin-top:0.5rem;">${nextLine}</p>
-              <div class="btn-group" style="margin-top:1.5rem;">
-                <a href="register.html" class="btn btn-primary">Reserve A Spot</a>
-              </div>
-            </div>
-          </div>
-        </section>`;
-    }
-
     // Fallback: nothing at all
     return `
       <section class="section">
@@ -208,31 +179,28 @@
   }
 
   function buildArchiveSection() {
-    const showLastAsClosed = !active && archive.length > 0;
-    // If we showed the last closed cycle in the "current" section, skip it in archive
-    const archiveItems = showLastAsClosed ? archive.slice(1) : archive;
-
     let inner = '';
 
-    if (archiveItems.length === 0) {
+    if (archive.length === 0) {
       inner = `
         <div class="empty-archive">
           <span style="font-size:2rem;">📂</span>
           <p>Previous prompts and winners will appear here after each cycle closes.</p>
-          ${archive.length === 0 && active
+          ${active
             ? `<p style="margin-top:0.35rem; font-size:0.85rem;">Check back after ${fmtResultsDate(active.revealAt)}.</p>`
             : ''}
         </div>`;
     } else {
-      const cards = archiveItems.map(p => `
+      const cards = archive.map(p => `
         <div class="archive-card">
           <div class="archive-card-header">
             <span class="archive-month">${escHtml(p.cycle)}</span>
-            <div style="display:flex; gap:0.4rem; align-items:center;">
+            <div class="archive-card-badges">
               ${typeBadge(p.type)}
               ${statusBadge('closed', 'Closed')}
             </div>
           </div>
+          ${p.image ? `<img src="${escHtml(p.image)}" alt="${escHtml(p.cycle)} thumbnail" class="archive-thumbnail" />` : ''}
           <p class="archive-prompt">&ldquo;${escHtml(p.text)}&rdquo;</p>
           ${resultsReady(p) ? winnersHTML(p.winners, p.winnerImage) : ''}
         </div>`).join('');
@@ -251,11 +219,8 @@
   }
 
   function buildUpcomingSection() {
-    const nextMonth = upcoming
-      ? `<strong>${fmt(upcoming.revealAt, { month: 'long', year: 'numeric' })}</strong>`
-      : 'the next cycle';
     const teaser = upcoming
-      ? `The prompt for ${nextMonth} will be revealed at ${fmtReveal(upcoming.revealAt)}.`
+      ? `Reserve your spot today and get an email with your prompt on ${fmtRevealShort(upcoming.revealAt)}.`
       : `The next cycle will be announced soon.`;
 
     return `
@@ -265,7 +230,7 @@
             <p class="section-label">Next Cycle</p>
             <h2 class="section-title">${upcoming ? fmt(upcoming.revealAt, { month: 'long', year: 'numeric' }) : 'Coming Soon'}</h2>
             <div class="gold-rule"></div>
-            <p style="color:var(--text-muted); max-width:500px; margin:0 auto 2rem;">${teaser} Register annually to secure your spot in every cycle automatically.</p>
+            <p style="color:var(--text-muted); max-width:500px; margin:0 auto 2rem;">${teaser}</p>
             <div class="btn-group">
               <a href="register.html" class="btn btn-primary">Register</a>
             </div>
@@ -276,8 +241,13 @@
 
   // ── Render ──────────────────────────────────────────────────────────────────
 
-  root.innerHTML =
-    buildCurrentSection() +
-    buildArchiveSection();
+  // Between cycles (last cycle closed, next one not revealed yet): lead with
+  // the "next prompt" teaser, then the archive — where the just-closed cycle's
+  // winners now live as the newest (first) card in Previous Prompts and Winners.
+  const betweenCycles = !active && revealed.length > 0;
+
+  root.innerHTML = betweenCycles
+    ? buildUpcomingSection() + buildArchiveSection()
+    : buildCurrentSection() + buildArchiveSection();
 
 })();
