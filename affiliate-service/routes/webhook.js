@@ -48,6 +48,22 @@ router.post(
             [customerEmail]
           );
           isReturningCustomer = priorRows.length > 0;
+
+          // Also check Stripe directly — catches purchases made outside the affiliate system
+          if (!isReturningCustomer) {
+            const customers = await stripe.customers.list({ email: customerEmail, limit: 10 });
+            for (const customer of customers.data) {
+              const charges = await stripe.charges.list({
+                customer: customer.id,
+                created: { lt: session.created },
+                limit: 1,
+              });
+              if (charges.data.some(c => c.status === 'succeeded')) {
+                isReturningCustomer = true;
+                break;
+              }
+            }
+          }
         }
 
         if (!isReturningCustomer) {
