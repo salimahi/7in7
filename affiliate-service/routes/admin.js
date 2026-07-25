@@ -115,6 +115,13 @@ function renderAdminPage(affiliates) {
     <label>Note <input type="text" name="note" /></label>
     <button type="submit">Record</button>
   </form>
+
+  <h2>Void conversion</h2>
+  <form method="post" action="/admin/conversions/void">
+    <label>Stripe Session ID <input type="text" name="stripe_session_id" required style="width:320px" /></label>
+    <label>Note <input type="text" name="note" value="Existing customer — credit reversed" style="width:320px" /></label>
+    <button type="submit">Void</button>
+  </form>
 </body>
 </html>`;
 }
@@ -177,21 +184,43 @@ router.post('/payouts', express.urlencoded({ extended: false }), async (req, res
   }
 });
 
+router.post('/conversions/void', express.urlencoded({ extended: false }), async (req, res) => {
+  const { stripe_session_id, note } = req.body || {};
+  if (!stripe_session_id) {
+    res.status(400).send('stripe_session_id is required');
+    return;
+  }
+  try {
+    const { rowCount } = await db.query(
+      'UPDATE conversions SET commission_cents = 0, note = $1 WHERE stripe_session_id = $2',
+      [note || 'Voided', stripe_session_id]
+    );
+    if (rowCount === 0) {
+      res.status(404).send('Conversion not found');
+      return;
+    }
+    res.redirect('/admin');
+  } catch (err) {
+    console.error(`[admin] failed to void conversion: ${err.message}`);
+    res.status(500).send('failed to void conversion');
+  }
+});
+
 router.get('/export.csv', async (req, res) => {
   try {
     const { rows } = await db.query(`
       SELECT c.created_at, a.name AS affiliate_name, a.ref_code, c.product_type,
-             c.amount_total_cents, c.commission_cents, c.customer_email, c.stripe_session_id
+             c.amount_total_cents, c.commission_cents, c.customer_email, c.stripe_session_id, c.note
       FROM conversions c
       LEFT JOIN affiliates a ON a.id = c.affiliate_id
       ORDER BY c.created_at DESC
     `);
 
-    const header = 'created_at,affiliate_name,ref_code,product_type,amount_total_cents,commission_cents,customer_email,stripe_session_id';
+    const header = 'created_at,affiliate_name,ref_code,product_type,amount_total_cents,commission_cents,customer_email,stripe_session_id,note';
     const csvEscape = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
     const lines = rows.map(r => [
       r.created_at.toISOString(), r.affiliate_name, r.ref_code, r.product_type,
-      r.amount_total_cents, r.commission_cents, r.customer_email, r.stripe_session_id,
+      r.amount_total_cents, r.commission_cents, r.customer_email, r.stripe_session_id, r.note,
     ].map(csvEscape).join(','));
 
     res.set('Content-Type', 'text/csv').set('Content-Disposition', 'attachment; filename="conversions.csv"');

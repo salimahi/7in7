@@ -46,6 +46,8 @@ async function runMigrations() {
       paid_at       TIMESTAMPTZ NOT NULL DEFAULT now()
     );
 
+    ALTER TABLE conversions ADD COLUMN IF NOT EXISTS note TEXT;
+
     CREATE INDEX IF NOT EXISTS idx_clicks_affiliate_id      ON clicks (affiliate_id);
     CREATE INDEX IF NOT EXISTS idx_conversions_affiliate_id ON conversions (affiliate_id);
     CREATE INDEX IF NOT EXISTS idx_payouts_affiliate_id     ON payouts (affiliate_id);

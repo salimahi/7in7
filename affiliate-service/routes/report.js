@@ -48,7 +48,7 @@ router.get('/a/:report_token', async (req, res) => {
     );
 
     const { rows: referrals } = await db.query(
-      `SELECT product_type, customer_email, commission_cents, created_at
+      `SELECT product_type, customer_email, commission_cents, note, created_at
        FROM conversions WHERE affiliate_id = $1 ORDER BY created_at DESC`,
       [affiliate.id]
     );
@@ -84,6 +84,7 @@ router.get('/a/:report_token', async (req, res) => {
         <td>${escHtml(r.customer_email || '—')}</td>
         <td>${escHtml(PRODUCT_LABELS[r.product_type] || r.product_type)}</td>
         <td>${formatCents(r.commission_cents)}</td>
+        <td>${escHtml(r.note || '')}</td>
       </tr>`).join('');
 
     const payoutHistoryRows = payoutRows.map(r => `
@@ -120,8 +121,8 @@ router.get('/a/:report_token', async (req, res) => {
 
   <h2>Your referrals</h2>
   <table>
-    <thead><tr><th>Date</th><th>Email</th><th>Product</th><th>Commission</th></tr></thead>
-    <tbody>${referralRows || '<tr><td colspan="4">No referrals yet</td></tr>'}</tbody>
+    <thead><tr><th>Date</th><th>Email</th><th>Product</th><th>Commission</th><th>Note</th></tr></thead>
+    <tbody>${referralRows || '<tr><td colspan="5">No referrals yet</td></tr>'}</tbody>
   </table>
 
   <h2>Payout history</h2>
