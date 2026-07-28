@@ -8,12 +8,18 @@ const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 
 const app = express();
 
-// Known fixed prices (Stripe amount_total, in cents) for write7in7.com's live Buy Buttons /
-// Payment Link, used to attach product metadata without an extra Stripe API call for line items.
+const KNOWN_PRODUCTS = {
+  register_single: { id: 'register_single', name: 'Single-Cycle Registration', category: 'Entry Fee' },
+  subscription_annual: { id: 'subscription_annual', name: 'Annual Subscription', category: 'Entry Fee' },
+  late_entry: { id: 'late_entry', name: 'Late Entry', category: 'Entry Fee' },
+};
+
+// Fallback for sessions with no metadata.product_type (e.g. Stripe Payment Links configured
+// directly in the Dashboard) — matched by fixed full price, so it misses discounted sessions.
 const KNOWN_PRODUCTS_BY_AMOUNT = {
-  2500: { id: 'register_single', name: 'Single-Cycle Registration', category: 'Entry Fee' },
-  24000: { id: 'subscription_annual', name: 'Annual Subscription', category: 'Entry Fee' },
-  3500: { id: 'late_entry', name: 'Late Entry', category: 'Entry Fee' },
+  2500: KNOWN_PRODUCTS.register_single,
+  24000: KNOWN_PRODUCTS.subscription_annual,
+  3500: KNOWN_PRODUCTS.late_entry,
 };
 
 app.post(
@@ -40,7 +46,8 @@ app.post(
     try {
       const externalId =
         typeof session.customer === 'string' ? session.customer : session.customer && session.customer.id;
-      const knownProduct = KNOWN_PRODUCTS_BY_AMOUNT[session.amount_total];
+      const productType = session.metadata && session.metadata.product_type;
+      const knownProduct = KNOWN_PRODUCTS[productType] || KNOWN_PRODUCTS_BY_AMOUNT[session.amount_total];
 
       // Reddit's API schema types `metadata.value` as a double "in the base unit of the
       // currency" (e.g. dollars, example 10.99) — Stripe's amount_total is in the minor

@@ -24,4 +24,4 @@ const PRODUCT_CONFIG = {
   },
 };
 
-module.exports = { PRODUCT_CONFIG };
+module.exports = { PRODUCT_CONFIG, SITE_URL };

@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const stripe = require('../stripe');
-const { PRODUCT_CONFIG } = require('../config');
+const { PRODUCT_CONFIG, SITE_URL } = require('../config');
 
 const router = express.Router();
 
@@ -24,6 +24,13 @@ router.post('/', express.json(), async (req, res) => {
       metadata: {
         aff_code: affCode || '',
         product_type: productType,
+      },
+      allow_promotion_codes: true,
+      consent_collection: { terms_of_service: 'required' },
+      custom_text: {
+        terms_of_service_acceptance: {
+          message: `I have read and agree to the [Terms & Conditions](${SITE_URL}/terms.html).`,
+        },
       },
       success_url: product.successUrl,
       cancel_url: product.cancelUrl,
