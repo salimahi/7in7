@@ -34,10 +34,9 @@ router.post('/', express.json(), async (req, res) => {
             'Write 7 in 7 a license to produce and publicly distribute a recorded table read of your ' +
             'script as a podcast episode, performed by voice actors, and to keep that episode available ' +
             'and promote it. You keep full ownership and copyright in your script. You also confirm your ' +
-            "script is your own original work and does not infringe anyone else's rights." +
-            ' ' +
-            'I have read and agree to the above disclaimer as well as the Write 7 in 7 ' +
-            `[Terms & Conditions](${SITE_URL}/terms.html) and [Privacy Policy](${SITE_URL}/privacy.html).`,
+            "script is your own original work and does not infringe anyone else's rights. " +
+            '**I have read and agree to the above disclaimer as well as the Write 7 in 7 ' +
+            `[Terms & Conditions](${SITE_URL}/terms.html) and [Privacy Policy](${SITE_URL}/privacy.html).**`,
         },
       },
       success_url: product.successUrl,
