@@ -29,7 +29,13 @@ router.post('/', express.json(), async (req, res) => {
       consent_collection: { terms_of_service: 'required' },
       custom_text: {
         terms_of_service_acceptance: {
-          message: `I have read and agree to the [Terms & Conditions](${SITE_URL}/terms.html).`,
+          message:
+            "If you win a monthly cycle, or if the Organizer otherwise selects your script, you grant " +
+            'Write 7 in 7 a license to produce and publicly distribute a recorded table read of your ' +
+            'script as a podcast episode, performed by voice actors, and to keep that episode available ' +
+            'and promote it. You keep full ownership and copyright in your script. You also confirm your ' +
+            "script is your own original work and does not infringe anyone else's rights.\n\n" +
+            `I have read and agree to the [Terms & Conditions](${SITE_URL}/terms.html).`,
         },
       },
       success_url: product.successUrl,
