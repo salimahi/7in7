@@ -1,229 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Podcast | Write 7 in 7</title>
-  <meta name="description" content="Listen to performed table reads of winning scripts from the Write 7 in 7 monthly screenwriting competition." />
+  <meta name="description" content="Listen to the Write 7 in 7 Podcast on Spotify." />
+  <meta http-equiv="refresh" content="0; url=https://creators.spotify.com/pod/profile/write7-in-7-podcast/" />
+  <link rel="canonical" href="https://creators.spotify.com/pod/profile/write7-in-7-podcast/" />
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
   <link rel="alternate icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
   <link rel="stylesheet" href="css/styles.css" />
-  <meta property="og:image" content="https://write7in7.com/img/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://write7in7.com/img/og-image.png" />
-  <style>
-    /* Podcast hero */
-    .podcast-hero {
-      background: rgba(180, 154, 66, 0.06);
-      border: 1px solid rgba(180, 154, 66, 0.3);
-      border-radius: var(--radius);
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 2.5rem;
-      align-items: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .podcast-thumbnail {
-      width: 160px;
-      height: 160px;
-      object-fit: cover;
-      border-radius: var(--radius);
-      display: block;
-      flex-shrink: 0;
-    }
-
-    .podcast-hero-text h2 {
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      color: var(--text);
-      margin-bottom: 0.75rem;
-    }
-
-    .podcast-hero-text p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-
-    /* Platform subscribe buttons */
-    .platforms-section {
-      margin-bottom: 0;
-    }
-
-    .platforms-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .platforms-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .platform-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-sm);
-      padding: 0.55rem 1rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      transition: border-color var(--transition), color var(--transition);
-      text-decoration: none;
-    }
-
-    .platform-btn:hover {
-      border-color: var(--gold);
-      color: var(--dark);
-    }
-
-    .platform-btn[href=""] {
-      opacity: 0.45;
-      pointer-events: none;
-      cursor: default;
-    }
-
-    .platform-icon { font-size: 1rem; }
-
-    .platforms-label {
-      font-family: 'Geist Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    /* Episode list */
-    .episodes-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .episode-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      transition: border-color var(--transition);
-    }
-
-    .episode-card:hover { border-color: var(--gold); }
-
-    .episode-card-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .episode-number {
-      font-family: 'Geist Mono', monospace;
-      font-weight: 400;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: var(--gold-dark);
-      background: rgba(180, 154, 66, 0.1);
-      border: 1px solid rgba(180, 154, 66, 0.28);
-      padding: 0.2rem 0.6rem;
-      border-radius: var(--radius-sm);
-      flex-shrink: 0;
-    }
-
-    .episode-cycle {
-      font-family: 'Geist Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .episode-title {
-      font-family: 'Cormorant', serif;
-      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 0.35rem;
-      line-height: 1.2;
-    }
-
-    .episode-writer {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .episode-writer strong { color: var(--text); }
-
-    .episode-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-
-    .episode-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .episode-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-    }
-
-    /* Empty state */
-    .empty-episodes {
-      text-align: center;
-      padding: 4rem 2rem;
-      border: 1px dashed var(--card-border);
-      border-radius: var(--radius);
-      color: var(--text-muted);
-    }
-
-    .empty-episodes p { font-size: 0.95rem; margin-top: 0.5rem; }
-
-    @media (max-width: 640px) {
-      .podcast-hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 2rem 1.5rem;
-      }
-
-      .podcast-thumbnail {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto;
-      }
-
-      .platforms-row { justify-content: center; }
-    }
-  </style>
 
   <!-- Reddit Pixel -->
   <script>
@@ -231,102 +20,15 @@
   </script>
   <!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
   <!-- End Reddit Pixel -->
+
+  <script>
+    window.location.replace('https://creators.spotify.com/pod/profile/write7-in-7-podcast/');
+  </script>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="container nav-inner">
-      <ul class="nav-links">
-        <li><a href="prompts.html">Prompts</a></li>
-        <li><a href="episodes.html">Podcast</a></li>
-        <li><a href="rules.html">Rules</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-      <a href="index.html" class="nav-logo"><img src="7in7logos/Wordmark Black n Gold.svg" alt="Write 7 in 7" class="nav-logo-img" /></a>
-      <div class="nav-right">
-        <a href="register.html" class="nav-cta">Reserve a Spot</a>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- PAGE HEADER -->
-  <header class="page-header">
-    <div class="page-header-content">
-      <p class="section-label">The Podcast</p>
-      <h1>Write 7 in 7 Podcast</h1>
-      <div class="gold-rule" style="margin: 1rem auto 0;"></div>
-      <p>Winning scripts performed live.</p>
-    </div>
-  </header>
-
-  <!-- PODCAST HERO -->
-  <section class="section" style="padding-bottom: 0;">
-    <div class="container" style="max-width: 860px;">
-      <div class="podcast-hero">
-        <img src="img/Podcast-Thumbnail.png" alt="The Write 7 in 7 Podcast" class="podcast-thumbnail" />
-        <div class="podcast-hero-text">
-          <h2>Scripts brought to life.</h2>
-          <p>
-            Each month's winning script is performed by voice actors  and published as a full episode of the Write 7 in 7 Podcast. A real, shareable artifact for your portfolio.
-          </p>
-          <div class="platforms-section">
-            <p class="platforms-label">Listen on</p>
-            <div class="platforms-row">
-              <!-- Update href values with real URLs when the podcast goes live -->
-              <a href="" class="platform-btn" aria-label="Listen on Spotify">
-                <span class="platform-icon">🎵</span> Spotify
-              </a>
-              <a href="" class="platform-btn" aria-label="Listen on Apple Podcasts">
-                <span class="platform-icon">🎙</span> Apple Podcasts
-              </a>
-              <a href="" class="platform-btn" aria-label="Listen on Amazon Music">
-                <span class="platform-icon">🎶</span> Amazon Music
-              </a>
-              <a href="" class="platform-btn" aria-label="Listen on YouTube">
-                <span class="platform-icon">▶</span> YouTube
-              </a>
-            </div>
-            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 1rem;">
-              🎙 Voice actors record episodes together in our <a href="https://discord.gg/tGxDZydSep" target="_blank" rel="noopener" style="color: var(--gold-dark);">Discord</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Dynamic episode list rendered by episodes.js -->
-  <main id="episodes-root"></main>
-
-  <!-- CTA -->
-  <section class="section">
-    <div class="container" style="max-width: 860px;">
-      <div class="text-center">
-        <p class="section-label">Write for It</p>
-        <h2 class="section-title">Your script could be next.</h2>
-        <div class="gold-rule"></div>
-        <p style="color: var(--text-muted); max-width: 480px; margin: 0 auto 2rem;">
-          Ready to write something that gets performed?
-        </p>
-        <div class="btn-group">
-          <a href="register.html" class="btn btn-primary">Register</a>
-          <a href="actors.html" class="btn btn-ghost">Act in It</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer" id="site-footer"></footer>
-  <script src="js/footer.js"></script>
-
-  <script src="js/episodes-data.js"></script>
-  <script src="js/reddit-attribution.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/episodes.js"></script>
+  <div class="section" style="text-align: center; padding: 4rem 1.5rem;">
+    <p>Redirecting to the Write 7 in 7 Podcast on Spotify&hellip;</p>
+    <p><a href="https://creators.spotify.com/pod/profile/write7-in-7-podcast/">Click here if you are not redirected automatically.</a></p>
+  </div>
 </body>
 </html>
