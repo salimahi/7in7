@@ -9,6 +9,7 @@
       <div class="footer-logo"><img src="7in7logos/Wordmark Cream n Gold.svg" alt="Write 7 in 7" class="footer-logo-img" /></div>
       <ul class="footer-nav">
         <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="prompts.html">Prompts</a></li>
         <li><a href="episodes.html">Podcast</a></li>
         <li><a href="casting/">Casting</a></li>

@@ -791,6 +791,79 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 }
 
 /* ============================================================
+   ABOUT / FOUNDER STORIES
+   ============================================================ */
+.story-block {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.story-block:not(:last-child) {
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.story-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  border: 1.5px dashed var(--gold);
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--gold-dark);
+  opacity: 0.6;
+}
+
+.story-photo-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+}
+
+.story-text h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 0.35rem;
+}
+
+.story-link {
+  display: inline-block;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--gold-dark);
+  margin-bottom: 1rem;
+}
+
+.story-text p {
+  color: var(--text-muted);
+  margin-bottom: 1.1rem;
+}
+.story-text p:last-child { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .story-block {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .story-photo-placeholder,
+  .story-photo-img {
+    max-width: 180px;
+    margin: 0 auto;
+  }
+}
+
+/* ============================================================
    PRICING
    ============================================================ */
 .pricing-grid {
