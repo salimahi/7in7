@@ -11,7 +11,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="prompts.html">Prompts</a></li>
-        <li><a href="episodes.html">Podcast</a></li>
+        <li><a href="podcast.html">Podcast</a></li>
         <li><a href="casting/">Casting</a></li>
         <li><a href="rules.html">Rules</a></li>
         <li><a href="faq.html">FAQ</a></li>
