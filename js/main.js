@@ -65,12 +65,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --- Active nav link --- */
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const normalizePath = (path) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  const currentPath = normalizePath(window.location.pathname);
   document.querySelectorAll('.nav-links a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (normalizePath(link.pathname) === currentPath) {
       link.classList.add('active');
     }
   });
+
+  /* --- RSS feed: copy link instead of opening raw XML --- */
+  const rssLink = document.getElementById('rss-copy-link');
+  if (rssLink && navigator.clipboard) {
+    const rssLabel = rssLink.querySelector('.listen-badge-rss-label');
+    const rssUrl = rssLink.href;
+    const originalLabel = rssLabel.textContent;
+    rssLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigator.clipboard.writeText(rssUrl).then(() => {
+        rssLabel.textContent = 'Copied!';
+        rssLink.classList.add('copied');
+        setTimeout(() => {
+          rssLabel.textContent = originalLabel;
+          rssLink.classList.remove('copied');
+        }, 1800);
+      }).catch(() => {
+        window.open(rssUrl, '_blank', 'noopener');
+      });
+    });
+  }
 
 });
