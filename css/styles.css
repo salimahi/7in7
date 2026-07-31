@@ -791,6 +791,96 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 }
 
 /* ============================================================
+   PODCAST PAGE — LISTEN ON BADGES + PLAYER
+   ============================================================ */
+.listen-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.listen-badge-link {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.listen-badge-link:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+.listen-badge-img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.listen-badge-rss {
+  gap: 0.6rem;
+  height: 48px;
+  padding: 0 1.1rem;
+  border: 1px solid rgba(180, 154, 66, 0.4);
+  border-radius: 999px;
+  background: var(--bg-2);
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.listen-badge-rss:hover {
+  border-color: var(--gold);
+  background: rgba(180, 154, 66, 0.08);
+  color: var(--gold-dark);
+  opacity: 1;
+}
+
+.listen-badge-rss-icon {
+  height: 20px;
+  width: 20px;
+  display: block;
+}
+
+/* iHeartRadio's badge SVG ships on a 792x612 canvas with the actual
+   button occupying a small centered region; crop to it via background
+   sizing so it reads at the same scale as the other logo badges. */
+.listen-badge-ihr {
+  display: block;
+  width: 162.7px;
+  height: 48px;
+  background-image: url('../badges/iheartradio-podcast-button-black.svg');
+  background-repeat: no-repeat;
+  background-size: 309.7px 239.3px;
+  background-position: -73.5px -95.65px;
+}
+
+.podcast-player-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(28, 26, 20, 0.08);
+}
+
+.podcast-player-wrap iframe {
+  width: 100%;
+  display: block;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  .listen-badges { gap: 1.1rem 1.4rem; }
+  .listen-badge-img { height: 40px; }
+  .listen-badge-rss { height: 40px; padding: 0 0.85rem; }
+  .listen-badge-ihr { transform: scale(0.833); transform-origin: center; }
+}
+
+/* ============================================================
    ABOUT / FOUNDER STORIES
    ============================================================ */
 .story-block {
