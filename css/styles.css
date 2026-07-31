@@ -1470,8 +1470,14 @@ tbody td:nth-child(2) {
 }
 
 .terms-section ul {
-  padding-left: 1.5rem;
+  list-style: none;
+  padding-left: 0;
   margin-bottom: 0.75rem;
+}
+
+.terms-section ul ul {
+  padding-left: 1.5rem;
+  margin-top: 0.35rem;
 }
 
 .terms-section ul li {
