@@ -194,6 +194,10 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
 .nav-links a:hover,
 .nav-links a.active { color: var(--dark); }
 
+/* Register CTA duplicated inside the mobile dropdown (hidden on desktop,
+   where the standalone .nav-cta button in the top bar already covers it). */
+.nav-links-cta-item { display: none; }
+
 .nav-cta {
   background: transparent !important;
   color: #8C6737 !important;
@@ -268,18 +272,34 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
     font-size: 0.85rem;
   }
 
-  .nav-right { gap: 0.75rem; }
+  /* Register CTA: hidden in the top bar (no room next to the centered
+     logo), shown instead as a prominent button at the foot of the
+     mobile dropdown. */
+  .nav-right .nav-cta { display: none; }
+
+  .nav-links-cta-item {
+    display: block;
+    margin-top: 0.75rem;
+  }
+
+  .nav-links-cta {
+    display: block;
+    text-align: center;
+    background: #8C6737 !important;
+    color: var(--bg) !important;
+    padding: 0.85rem 1rem !important;
+    border-radius: 2px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.75rem !important;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background var(--transition);
+  }
+  .nav-links-cta:hover,
+  .nav-links-cta:active { background: #6f5329 !important; }
 
   .nav-toggle { display: flex; }
-}
-
-/* Keep the register CTA visible (not just inside the hamburger menu) down to small phones */
-@media (max-width: 400px) {
-  .nav-cta {
-    padding: 0.4rem 0.75rem !important;
-    font-size: 0.58rem !important;
-    letter-spacing: 0.1em !important;
-  }
 }
 
 /* ============================================================
