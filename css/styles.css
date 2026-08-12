@@ -198,6 +198,29 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
    where the standalone .nav-cta button in the top bar already covers it). */
 .nav-links-cta-item { display: none; }
 
+/* Social icons: shown in the top bar on desktop; duplicated inside the
+   mobile dropdown (hidden here) once the hamburger takes over. */
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.nav-social a {
+  display: flex;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+.nav-social a:hover { color: var(--dark); }
+
+.nav-social svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.nav-links-social-item { display: none; }
+
 .nav-cta {
   background: transparent !important;
   color: #8C6737 !important;
@@ -298,6 +321,19 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
   }
   .nav-links-cta:hover,
   .nav-links-cta:active { background: #6f5329 !important; }
+
+  /* Social icons: hide the top-bar row (no room next to the centered
+     logo), show the duplicate at the foot of the mobile dropdown instead. */
+  .nav-right .nav-social { display: none; }
+
+  .nav-links-social-item {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .nav-links-social-item .nav-social { gap: 1.5rem; }
+  .nav-links-social-item .nav-social svg { width: 20px; height: 20px; }
 
   .nav-toggle { display: flex; }
 }
@@ -1729,6 +1765,25 @@ tbody td:nth-child(2) {
   transition: color var(--transition);
 }
 .footer-nav a:hover { color: var(--bg); }
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.footer-social a {
+  display: flex;
+  color: rgba(240, 235, 216, 0.45);
+  transition: color var(--transition);
+}
+.footer-social a:hover { color: var(--gold); }
+
+.footer-social svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
 
 .footer-powered {
   display: inline-flex;
