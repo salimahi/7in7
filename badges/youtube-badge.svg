@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="167px" height="44px" viewBox="0 0 167 44" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <title>badges/youtube-badge</title>
+    <g fill="none" fill-rule="evenodd">
+        <rect x="1" y="1" width="165" height="42" rx="8" fill="#FFFFFF" stroke="#9AA0A6" stroke-width="0.5"></rect>
+        <circle cx="21" cy="21" r="14" fill="#B49A42"></circle>
+        <polygon points="16,13.5 16,28.5 29,21" fill="#FFFFFF"></polygon>
+        <text x="44" y="21" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="600" letter-spacing="0.2" fill="#1C1A14">YouTube</text>
+    </g>
+</svg>
