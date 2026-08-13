@@ -938,7 +938,7 @@ textarea::placeholder { color: rgba(107, 99, 82, 0.4); }
   height: 48px;
   padding: 0 1.1rem;
   border: 1px solid rgba(180, 154, 66, 0.4);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--bg-2);
   font-family: 'Geist Mono', monospace;
   font-size: 0.68rem;
