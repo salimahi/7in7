@@ -32,7 +32,7 @@
       </div>
       <div class="footer-powered">
         <span>⚙</span>
-        Powered by <strong>Gopher the Gold Productions</strong>
+        Powered by <a href="https://gopherthegold.com/" target="_blank" rel="noopener" style="color:inherit;"><strong>Gopher the Gold Productions</strong></a>
       </div>
       <p class="footer-copy"><a href="mailto:contact@write7in7.com" style="color:inherit;">contact@write7in7.com</a> &nbsp;&middot;&nbsp; &copy; 2026 Write 7 in 7. All rights reserved.</p>
     </div>
