@@ -151,9 +151,9 @@
 
     /* Archive */
     .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
       margin-top: 2.5rem;
     }
 
@@ -183,6 +183,12 @@
       flex-wrap: wrap;
       gap: 0.4rem;
       align-items: center;
+    }
+
+    .archive-card-badges .prompt-type-badge,
+    .archive-card-badges .prompt-status {
+      font-size: 0.65rem;
+      padding: 0.25rem 0.7rem;
     }
 
     .archive-month {
@@ -245,15 +251,39 @@
       flex-shrink: 0;
     }
 
-    .winner-row:nth-child(1) .winner-place { color: var(--gold-light); }
-    .winner-row:nth-child(2) .winner-place { color: var(--text-muted); }
-    .winner-row:nth-child(3) .winner-place { color: #a0785a; }
+    .winner-row.place-first .winner-place { color: var(--gold-light); }
+    .winner-row.place-second .winner-place { color: var(--text-muted); }
+    .winner-row.place-third .winner-place { color: #a0785a; }
 
     .winner-name {
       color: var(--text-muted);
     }
 
     .winner-name strong { color: var(--purple-light); }
+
+    .winner-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+      margin-left: 0.35em;
+    }
+
+    .winner-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3em;
+      color: var(--purple-light);
+      text-decoration: none;
+    }
+
+    .winner-social:hover { text-decoration: underline; }
+
+    .winner-social svg {
+      width: 0.85em;
+      height: 0.85em;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
 
     .empty-archive {
       text-align: center;

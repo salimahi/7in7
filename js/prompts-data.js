@@ -54,9 +54,9 @@
     image:           null,   // e.g. 'img/prompts/2026-07.jpg'
     winnerImage:     null,   // e.g. 'img/prompts/winners/2026-07.jpg'
     winners: {
-      first:  null,   // { name: 'Writer Name', title: 'Script Title', instagram: 'handle' }
-      second: null,   // instagram is optional; when set, it's linked to instagram.com/<handle>
-      third:  null,
+      first:  null,   // { name: 'Writer Name', title: 'Script Title', instagram: 'handle', tiktok: 'handle' }
+      second: null,   // instagram/tiktok are optional; when set, each is shown as a linked icon + handle
+      third:  null,   // for a tie, use an array instead of a single object: [ {...}, {...} ]
     },
   },
 */
@@ -88,11 +88,14 @@ const PROMPTS = [
     text:            'Feature a phobia of your choice.',
     type:            'Writer\'s Choice',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-08.jpg',   // e.g. 'img/prompts/2026-07.jpg'
-    winnerImage:     null,   // e.g. 'img/prompts/winners/2026-07.jpg'
+    winnerImage:     'img/prompts/winners/2026-08.png',
     winners: {
-      first:  null,   // { name: 'Writer Name', title: 'Script Title', instagram: 'handle' }
-      second: null,   // instagram is optional; when set, it's linked to instagram.com/<handle>
-      third:  null,
+      first:  [
+        { name: 'Carolyn Minor', title: 'Merripen',   instagram: 'carollikesfood', tiktok: 'thepettymillenial' },
+        { name: 'Matthew Tate',  title: 'Autophobia', instagram: 'matthewtate123' },
+      ],
+      second: null,
+      third:  { name: 'Richard Douglas', title: 'Ready or Not, Here I Come', instagram: 'dougyfresh234' },
     },
   },
   // Add future cycles below this line:

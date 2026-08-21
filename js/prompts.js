@@ -73,19 +73,51 @@
     return type ? `<span class="prompt-type-badge">${escHtml(type)}</span>` : '';
   }
 
+  // Brand icon paths, matching the nav social icons (viewBox 0 0 16 16).
+  const ICON_PATHS = {
+    instagram: 'M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z',
+    tiktok: 'M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z',
+  };
+
+  function socialIcon(kind) {
+    return `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="${ICON_PATHS[kind]}"/></svg>`;
+  }
+
+  function socialLink(kind, href, handle) {
+    return `<a class="winner-social" href="${escHtml(href)}" target="_blank" rel="noopener">${socialIcon(kind)}@${escHtml(handle)}</a>`;
+  }
+
+  // Accepts a single winner object or an array of winner objects (a tie).
+  function toList(w) {
+    if (!w) return [];
+    return Array.isArray(w) ? w : [w];
+  }
+
   function winnersHTML(winners, winnerImage) {
     if (!winners) return '';
-    const { first, second, third } = winners;
-    if (!first && !second && !third) return '';
+    const groups = [
+      { label: '1st', place: 'first',  list: toList(winners.first)  },
+      { label: '2nd', place: 'second', list: toList(winners.second) },
+      { label: '3rd', place: 'third',  list: toList(winners.third)  },
+    ];
+    if (!groups.some(g => g.list.length)) return '';
 
-    const row = (place, label, w) => w
-      ? `<div class="winner-row">
-           <span class="winner-place">${label}</span>
-           <span class="winner-name"><strong>${escHtml(w.title)}</strong> by ${escHtml(w.name)}${
-             w.instagram ? ` <a href="https://www.instagram.com/${escHtml(w.instagram)}/" target="_blank" rel="noopener">@${escHtml(w.instagram)}</a>` : ''
-           }</span>
-         </div>`
-      : '';
+    const winnerLine = (w) => {
+      const links = [];
+      if (w.instagram) links.push(socialLink('instagram', `https://www.instagram.com/${w.instagram}/`, w.instagram));
+      if (w.tiktok) links.push(socialLink('tiktok', `https://www.tiktok.com/@${w.tiktok}`, w.tiktok));
+      const linksHtml = links.length ? `<span class="winner-links">${links.join('')}</span>` : '';
+      return `<strong>${escHtml(w.title)}</strong> by ${escHtml(w.name)}${linksHtml}`;
+    };
+
+    const rows = groups.flatMap(({ label, place, list }) => {
+      const tied = list.length > 1;
+      return list.map(w => `
+        <div class="winner-row place-${place}">
+          <span class="winner-place">${label}${tied ? ' (tie)' : ''}</span>
+          <span class="winner-name">${winnerLine(w)}</span>
+        </div>`);
+    }).join('');
 
     const graphic = winnerImage
       ? `<img src="${escHtml(winnerImage)}" alt="Winner announcement graphic" class="winner-graphic" />`
@@ -93,9 +125,7 @@
 
     return `<div class="archive-winners">
       ${graphic}
-      ${row('first',  '1st', first)}
-      ${row('second', '2nd', second)}
-      ${row('third',  '3rd', third)}
+      ${rows}
     </div>`;
   }
 
@@ -209,7 +239,7 @@
 
     return `
       <section class="section section-alt">
-        <div class="container" style="max-width:860px;">
+        <div class="container" style="max-width:820px;">
           <p class="section-label">Archive</p>
           <h2 class="section-title">Previous Prompts and Winners</h2>
           <div class="gold-rule"></div>
