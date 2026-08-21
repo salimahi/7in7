@@ -107,7 +107,7 @@
       if (w.instagram) links.push(socialLink('instagram', `https://www.instagram.com/${w.instagram}/`, w.instagram));
       if (w.tiktok) links.push(socialLink('tiktok', `https://www.tiktok.com/@${w.tiktok}`, w.tiktok));
       const linksHtml = links.length ? `<span class="winner-links">${links.join('')}</span>` : '';
-      return `<strong>${escHtml(w.title)}</strong> by ${escHtml(w.name)}${linksHtml}`;
+      return `<strong>${escHtml(w.title)}</strong> by <span class="winner-author">${escHtml(w.name)}</span>${linksHtml}`;
     };
 
     const rows = groups.flatMap(({ label, place, list }) => {
