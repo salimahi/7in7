@@ -97,6 +97,7 @@
       color: var(--dark);
       padding: 0.2rem 0.9rem;
       border-radius: 2px;
+      white-space: nowrap;
     }
 
     .stripe-option-label {
@@ -135,6 +136,14 @@
       color: var(--gold-light);
       font-weight: 500;
       margin-bottom: 1.25rem;
+    }
+
+    .prompt-cta-text {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
     }
   </style>
 
@@ -207,25 +216,60 @@
   <section class="section section-alt">
     <div class="container" style="max-width: 860px;">
 
-      <div class="stripe-options-row">
-        <div class="stripe-option">
-          <p class="stripe-option-label">Single Cycle Entry</p>
-          <p class="stripe-option-price"><span class="currency">US</span>$25</p>
-          <p class="stripe-option-savings" style="visibility:hidden;">&nbsp;</p>
-          <button class="btn btn-primary" data-checkout-product="register_single" style="width:100%;">Register</button>
+      <div id="register-standard">
+        <div class="stripe-options-row">
+          <div class="stripe-option">
+            <p class="stripe-option-label">Single Cycle Entry</p>
+            <p class="stripe-option-price"><span class="currency">US</span>$25</p>
+            <p class="stripe-option-savings" style="visibility:hidden;">&nbsp;</p>
+            <button class="btn btn-primary" data-checkout-product="register_single" style="width:100%;">Register</button>
+          </div>
+
+          <div class="stripe-option featured">
+            <p class="stripe-option-label">Annual Subscription</p>
+            <p class="stripe-option-price"><span class="currency">US</span>$20<span style="font-size:1rem;">/mo</span></p>
+            <p class="stripe-option-savings">US$240 billed annually</p>
+            <button class="btn btn-primary" data-checkout-product="subscription_annual" style="width:100%;">Subscribe</button>
+          </div>
         </div>
 
-        <div class="stripe-option featured">
-          <p class="stripe-option-label">Annual Subscription</p>
-          <p class="stripe-option-price"><span class="currency">US</span>$20<span style="font-size:1rem;">/mo</span></p>
-          <p class="stripe-option-savings">US$240 billed annually</p>
-          <button class="btn btn-primary" data-checkout-product="subscription_annual" style="width:100%;">Subscribe</button>
-        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
+          Payment processing by Stripe. Your prompt and submission link will be emailed at 7pm ET on the 7th. See <a href="terms.html">Terms &amp; Conditions</a> for full details.
+        </p>
       </div>
 
-      <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
-        Payment processing by Stripe. Your prompt and submission link will be emailed at 7pm ET on the 7th. See <a href="terms.html">Terms &amp; Conditions</a> for full details.
-      </p>
+      <div id="register-late" hidden>
+        <div class="prize-callout" style="margin-bottom: 1.5rem;">
+          <p class="prompt-cta-text"><strong>This month's prompt is already live.</strong> Join late or start a subscription to write this cycle &mdash; the deadline is still 7pm ET on the 14th. Not this month? Reserve your spot for the next cycle.</p>
+        </div>
+
+        <div class="stripe-options-row">
+          <div class="stripe-option">
+            <p class="stripe-option-label">Late Entry</p>
+            <p class="stripe-option-price"><span class="currency">US</span>$35</p>
+            <p class="stripe-option-savings"><span class="js-current-cycle-month">This cycle</span></p>
+            <button class="btn btn-primary" data-checkout-product="late_entry" style="width:100%;">Register</button>
+          </div>
+
+          <div class="stripe-option featured">
+            <p class="stripe-option-label">Annual Subscription</p>
+            <p class="stripe-option-price"><span class="currency">US</span>$20<span style="font-size:1rem;">/mo</span></p>
+            <p class="stripe-option-savings">US$240 billed annually</p>
+            <button class="btn btn-primary" data-checkout-product="subscription_annual" style="width:100%;">Subscribe</button>
+          </div>
+
+          <div class="stripe-option">
+            <p class="stripe-option-label">Next Cycle</p>
+            <p class="stripe-option-price"><span class="currency">US</span>$25</p>
+            <p class="stripe-option-savings"><span class="js-next-cycle-month">The next cycle</span></p>
+            <button class="btn btn-primary" data-checkout-product="register_single" style="width:100%;">Reserve a Spot</button>
+          </div>
+        </div>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
+          Payment processing by Stripe. Late entries receive the prompt and submission link by email right after registering; standard entries are emailed at 7pm ET on the 7th. See <a href="terms.html">Terms &amp; Conditions</a> for full details.
+        </p>
+      </div>
 
       <div class="submit-notice" style="margin-top: 1.5rem;">
         <span style="flex-shrink:0; font-size:1rem;">💬</span>
@@ -287,10 +331,12 @@
   <footer class="footer" id="site-footer"></footer>
   <script src="js/footer.js"></script>
 
+  <script src="js/prompts-data.js"></script>
   <script src="js/config.js"></script>
   <script src="js/reddit-attribution.js"></script>
   <script src="js/affiliate-attribution.js"></script>
   <script src="js/checkout.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/register.js"></script>
 </body>
 </html>
