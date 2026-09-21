@@ -110,9 +110,9 @@ const PROMPTS = [
     image:           'img/prompts/2026-09.jpg',   // e.g. 'img/prompts/2026-07.jpg'
     winnerImage:     'img/prompts/winners/2026-09.png',
    winners: {
-      first:  null,
-      second: null,
-      third:  null,
+      first:  { name: 'Leah Lopez', title: 'Unwritten', facebook:'LLopezME11' },
+      second: { name: 'Richard Douglas',  title: 'La Brasseria', instagram: 'dougyfresh234' },
+      third:  { name: 'Glenn Gregory',  title: 'Time To Go' },
     },
   },
   // Add future cycles below this line:
