@@ -115,6 +115,20 @@ const PROMPTS = [
       third:  { name: 'Glenn Gregory',  title: 'Time To Go' },
     },
   },
+
+  {
+    cycle:           'October 2026 | Cycle 04',
+    month:           'October 2026',
+    revealAt:        '2026-10-07T23:00:00Z',   // 7pm EDT
+    deadline:        '2026-10-14T23:00:00Z',   // 7pm EDT
+    resultsRevealAt: '2026-10-22T16:00:00Z',   // 12pm EDT
+    text:            '"We should have buried it deeper."',
+    type:            'Line of Dialogue',   // e.g. 'Dialogue Prompt'
+    image:           'img/prompts/2026-10.jpg',   // e.g. 'img/prompts/2026-07.jpg'
+    winnerImage:     null,
+   winners:  { first: null, second: null, third: null },
+    },
+  },
   // Add future cycles below this line:
 
 ];
