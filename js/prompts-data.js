@@ -55,7 +55,7 @@
     winnerImage:     null,   // e.g. 'img/prompts/winners/2026-07.jpg'
     winners: {
       first:  null,   // { name: 'Writer Name', title: 'Script Title', instagram: 'handle', tiktok: 'handle' }
-      second: null,   // instagram/tiktok are optional; when set, each is shown as a linked icon + handle
+      second: null,   // instagram/tiktok/facebook are optional; when set, each is shown as a linked icon + handle
       third:  null,   // for a tie, use an array instead of a single object: [ {...}, {...} ]
     },
   },
@@ -126,8 +126,7 @@ const PROMPTS = [
     type:            'Line of Dialogue',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-10.jpg',   // e.g. 'img/prompts/2026-07.jpg'
     winnerImage:     null,
-   winners:  { first: null, second: null, third: null },
-    },
+    winners: { first: null, second: null, third: null },
   },
   // Add future cycles below this line:
 
