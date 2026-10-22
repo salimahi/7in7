@@ -284,9 +284,9 @@
         [s % 60, 'Seconds'],
       ];
       el.innerHTML = cells.map(([n, label]) => `
-        <div style="min-width:4.5rem;">
-          <div style="font-family:'Cormorant', serif; font-size:2.5rem; font-weight:600; color:var(--dark); line-height:1;">${String(n).padStart(2, '0')}</div>
-          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-top:0.25rem;">${label}</div>
+        <div style="flex:0 1 auto; min-width:0; width:clamp(3rem, 16vw, 4.5rem);">
+          <div style="font-family:'Cormorant', serif; font-size:clamp(1.6rem, 8vw, 2.5rem); font-weight:600; color:var(--dark); line-height:1;">${String(n).padStart(2, '0')}</div>
+          <div style="font-size:clamp(0.55rem, 2.4vw, 0.7rem); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-top:0.25rem;">${label}</div>
         </div>`).join('');
     }
     tick();
@@ -296,7 +296,7 @@
   function buildUpcomingSection() {
     const teaser = upcoming
       ? `Reserve your spot today and get an email with your prompt on ${fmtRevealShort(upcoming.revealAt)}.`
-      : `<span id="next-cycle-countdown" role="timer" aria-label="Time until the next prompt" style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;"></span>`;
+      : `<span id="next-cycle-countdown" role="timer" aria-label="Time until the next prompt" style="display:flex; justify-content:center; flex-wrap:nowrap; gap:clamp(0.5rem, 3vw, 1rem);"></span>`;
 
     return `
       <section class="section">
