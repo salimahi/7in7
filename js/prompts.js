@@ -253,10 +253,50 @@
       </section>`;
   }
 
+  // Next 7th of the month at 7pm ET (handles EST/EDT), as a timestamp.
+  function nextCycleTarget() {
+    const etParts = d => Object.fromEntries(
+      new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York', year: 'numeric', month: 'numeric', day: 'numeric',
+        hour: 'numeric', hourCycle: 'h23',
+      }).formatToParts(d).map(p => [p.type, Number(p.value)])
+    );
+    const et = etParts(new Date(now));
+    for (let i = 0; i < 2; i++) {
+      const y = et.year + Math.floor((et.month - 1 + i) / 12);
+      const m = (et.month - 1 + i) % 12;
+      // Guess with EST (UTC-5), then correct if ET is observing daylight time.
+      let t = Date.UTC(y, m, 7, 19) + 5 * 3600000;
+      if (etParts(new Date(t)).hour !== 19) t -= 3600000;
+      if (t > now) return t;
+    }
+  }
+
+  function startCountdown(el, target) {
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) { location.reload(); return; }
+      const s = Math.floor(diff / 1000);
+      const cells = [
+        [Math.floor(s / 86400), 'Days'],
+        [Math.floor(s % 86400 / 3600), 'Hours'],
+        [Math.floor(s % 3600 / 60), 'Minutes'],
+        [s % 60, 'Seconds'],
+      ];
+      el.innerHTML = cells.map(([n, label]) => `
+        <div style="min-width:4.5rem;">
+          <div style="font-family:'Cormorant', serif; font-size:2.5rem; font-weight:600; color:var(--dark); line-height:1;">${String(n).padStart(2, '0')}</div>
+          <div style="font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-top:0.25rem;">${label}</div>
+        </div>`).join('');
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
   function buildUpcomingSection() {
     const teaser = upcoming
       ? `Reserve your spot today and get an email with your prompt on ${fmtRevealShort(upcoming.revealAt)}.`
-      : `The next cycle will be announced soon.`;
+      : `<span id="next-cycle-countdown" role="timer" aria-label="Time until the next prompt" style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;"></span>`;
 
     return `
       <section class="section">
@@ -267,7 +307,7 @@
             <div class="gold-rule"></div>
             <p style="color:var(--text-muted); max-width:500px; margin:0 auto 2rem;">${teaser}</p>
             <div class="btn-group">
-              <a href="register.html" class="btn btn-primary">Register</a>
+              <a href="register.html" class="btn btn-primary">Register Now</a>
             </div>
           </div>
         </div>
@@ -284,5 +324,8 @@
   root.innerHTML = betweenCycles
     ? buildUpcomingSection() + buildArchiveSection()
     : buildCurrentSection() + buildArchiveSection();
+
+  const countdownEl = document.getElementById('next-cycle-countdown');
+  if (countdownEl) startCountdown(countdownEl, nextCycleTarget());
 
 })();
