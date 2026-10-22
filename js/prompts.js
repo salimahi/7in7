@@ -95,13 +95,14 @@
   }
 
   function winnersHTML(winners, winnerImage) {
-    if (!winners) return '';
+    if (!winners && !winnerImage) return '';
+    winners = winners || {};
     const groups = [
       { label: '1st', place: 'first',  list: toList(winners.first)  },
       { label: '2nd', place: 'second', list: toList(winners.second) },
       { label: '3rd', place: 'third',  list: toList(winners.third)  },
     ];
-    if (!groups.some(g => g.list.length)) return '';
+    if (!winnerImage && !groups.some(g => g.list.length)) return '';
 
     const winnerLine = (w) => {
       const links = [];
