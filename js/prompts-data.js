@@ -125,8 +125,12 @@ const PROMPTS = [
     text:            '"We should have buried it deeper."',
     type:            'Line of Dialogue',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-10.jpg',   // e.g. 'img/prompts/2026-07.jpg'
-    winnerImage:     null,
-    winners: { first: null, second: null, third: null },
+    winnerImage:     'img/prompts/winners/2026-10.png',
+   winners: {
+      first:  { name: 'Jaime Bree', title: 'Seeing Red', twitter:'jaim_ee_bree' },
+      second: { name: 'Dare Nguyen',  title: 'Pillow', instagram: 'test.cement' },
+      third:  { name: 'Glenn Gregory',  title: 'We Should Have Buried It Deeper' },
+    },
   },
   // Add future cycles below this line:
 
