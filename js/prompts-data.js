@@ -122,7 +122,7 @@ const PROMPTS = [
     revealAt:        '2026-10-07T23:00:00Z',   // 7pm EDT
     deadline:        '2026-10-14T23:00:00Z',   // 7pm EDT
     resultsRevealAt: '2026-10-22T16:00:00Z',   // 12pm EDT
-    text:            '"We should have buried it deeper."',
+    text:            'We should have buried it deeper.',
     type:            'Line of Dialogue',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-10.jpg',   // e.g. 'img/prompts/2026-07.jpg'
     winnerImage:     'img/prompts/winners/2026-10.png',
@@ -139,7 +139,7 @@ const PROMPTS = [
     revealAt:        '2026-11-08T00:00:00Z',   // Nov 7, 7pm EST
     deadline:        '2026-11-15T00:00:00Z',   // Nov 14, 7pm EST
     resultsRevealAt: '2026-11-22T17:00:00Z',   // Nov 22, 12pm EST
-    text:            '"This Way to the Thrill Rides - on Brighton Pier" by EEPaul',
+    text:            'This Way to the Thrill Rides - on Brighton Pier by EEPaul',
     type:            'Photo',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-11.jpg',   // e.g. 'img/prompts/2026-07.jpg'
     winnerImage: null,
