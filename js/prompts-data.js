@@ -139,7 +139,7 @@ const PROMPTS = [
     revealAt:        '2026-10-08T00:00:00Z',   // 7pm EDT
     deadline:        '2026-10-15T00:00:00Z',   // 7pm EDT
     resultsRevealAt: '2026-10-22T17:00:00Z',   // 12pm EDT
-    text:            '',
+    text:            '"This Way to the Thrill Rides - on Brighton Pier" by EEPaul',
     type:            'Photo',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-11.jpg',   // e.g. 'img/prompts/2026-07.jpg'
     winnerImage: null,
