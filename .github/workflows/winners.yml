@@ -1,0 +1,73 @@
+name: Winners graphic
+
+# Triggered by the Railway job (write7in7-webhook) on the 21st via repository_dispatch.
+# Renders the graphic, updates js/prompts-data.js and opens a PR for approval.
+# Merging the PR (done from the approval email) publishes the website update.
+# Requires: Settings > Actions > General > "Allow GitHub Actions to create and approve pull requests".
+on:
+  repository_dispatch:
+    types: [render-winners]
+  workflow_dispatch:
+    inputs:
+      data:
+        description: 'Winners data JSON'
+        required: true
+      caption:
+        description: 'Instagram caption'
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.49.1
+          npx playwright install --with-deps chromium
+      - name: Write payload
+        env:
+          DATA: ${{ github.event.client_payload.data || github.event.inputs.data }}
+          CAPTION: ${{ github.event.client_payload.caption || github.event.inputs.caption }}
+        run: |
+          printf '%s' "$DATA" > "$RUNNER_TEMP/data.json"
+          printf '%s' "$CAPTION" > "$RUNNER_TEMP/caption.txt"
+          echo "MONTH=$(node -p "require('$RUNNER_TEMP/data.json').month")" >> "$GITHUB_ENV"
+          echo "LABEL=$(node -p "require('$RUNNER_TEMP/data.json').monthLabel")" >> "$GITHUB_ENV"
+      - name: Render graphic and update site data
+        run: |
+          node tools/render.js "$RUNNER_TEMP/data.json"
+          node tools/update-prompts-data.js "$RUNNER_TEMP/data.json"
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="winners/$MONTH"
+          git config user.name "write7in7-bot"
+          git config user.email "contact@write7in7.com"
+          git checkout -B "$BRANCH"
+          git add "img/prompts/winners/$MONTH.png" js/prompts-data.js
+          git commit -m "Add $LABEL winners graphic and results"
+          git push --force origin "$BRANCH"
+          {
+            echo "Winners for $LABEL. Approve from the email (or merge this PR) to publish on the website and allow the 12pm Instagram post."
+            echo
+            echo "<!--caption-->"
+            cat "$RUNNER_TEMP/caption.txt"
+            echo
+            echo "<!--/caption-->"
+            echo "<!--meta:$(node -p "JSON.stringify({tags: require('$RUNNER_TEMP/data.json').tags || []})")-->"
+          } > "$RUNNER_TEMP/body.md"
+          # Reuse an open PR; after a merge/close (regenerating to replace a graphic) open a new one.
+          if [ "$(gh pr list --head "$BRANCH" --state open --json number --jq length)" != "0" ]; then
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh pr create --base main --head "$BRANCH" --title "$LABEL winners" --body-file "$RUNNER_TEMP/body.md"
+          fi
