@@ -142,8 +142,12 @@ const PROMPTS = [
     text:            'This Way to the Thrill Rides - on Brighton Pier by EEPaul',
     type:            'Photo',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-11.jpg',   // e.g. 'img/prompts/2026-07.jpg'
-    winnerImage: null,
-    winners:     { first: null, second: null, third: null },
+    winnerImage:     'img/prompts/winners/2026-11.png',
+    winners: {
+      first:  { name: 'Emily Gerber', title: 'Step Right Up!', instagram: 'gerbswoman' },
+      second: { name: 'Maximiliano Garcia Hernandez', title: 'September 20th', instagram: 'crimsonsummitmedia' },
+      third:  { name: 'Tyler Mandell', title: 'Domestic Drama', instagram: 'tylermandell_' },
+    },
 
   },
   // Add future cycles below this line:
