@@ -142,8 +142,12 @@ const PROMPTS = [
     text:            'This Way to the Thrill Rides - on Brighton Pier by EEPaul',
     type:            'Photo',   // e.g. 'Dialogue Prompt'
     image:           'img/prompts/2026-11.jpg',   // e.g. 'img/prompts/2026-07.jpg'
-    winnerImage: null,
-    winners:     { first: null, second: null, third: null },
+    winnerImage:     'img/prompts/winners/2026-11.png',
+    winners: {
+      first:  { name: 'Test Winner One', title: 'Test Script One', instagram: 'test_one' },
+      second: { name: 'Test Winner Two', title: 'Test Script Two' },
+      third:  { name: 'Test Winner Three', title: 'Test Script Three', instagram: 'test_three', tiktok: 'test_three_tt' },
+    },
 
   },
   // Add future cycles below this line:
