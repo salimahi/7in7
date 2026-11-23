@@ -38,6 +38,9 @@ jobs:
         run: |
           npm install --no-save playwright@1.49.1
           npx playwright install --with-deps chromium
+      - name: Install ffmpeg (for the story MP4)
+        if: ${{ env.DATA != '' }}
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Render graphic
         if: ${{ env.DATA != '' }}
         run: |

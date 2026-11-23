@@ -1,10 +1,12 @@
 // Renders the casting call graphic (light design) to img/casting/<date>-<slug>.png at 2160x2160.
 // Usage: node tools/render-casting.js <data.json>
 // data.json: { script, date:'YYYY-MM-DD', times:'4:30 PM or 6:00 PM' }
+// Also writes the 1080x1920 story versions next to it: <name>-story.png and <name>-story.mp4 (10s).
 // Prints the repo-relative image path on the last line of stdout.
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
+const { renderStory } = require('./render-story');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -32,6 +34,10 @@ async function main() {
   await page.evaluate(() => document.fonts.ready);
   await page.screenshot({ path: path.join(root, rel), clip: { x: 0, y: 0, width: 1080, height: 1080 } });
   await browser.close();
+
+  const storyTpl = fs.readFileSync(path.join(__dirname, 'casting-graphic', 'template-story.html'), 'utf8');
+  const storyHtml = storyTpl.replace(/\{\{(\w+)\}\}/g, (_, k) => esc(vals[k]));
+  await renderStory(chromium, storyHtml, path.join(root, rel.replace(/\.png$/, '-story')));
   console.log(rel);
 }
 main().catch((e) => { console.error(e); process.exit(1); });
