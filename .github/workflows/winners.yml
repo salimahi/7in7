@@ -32,6 +32,8 @@ jobs:
         run: |
           npm install --no-save playwright@1.49.1
           npx playwright install --with-deps chromium
+      - name: Install ffmpeg (for the story MP4)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Write payload
         env:
           DATA: ${{ github.event.client_payload.data || github.event.inputs.data }}
@@ -53,7 +55,7 @@ jobs:
           git config user.name "write7in7-bot"
           git config user.email "contact@write7in7.com"
           git checkout -B "$BRANCH"
-          git add "img/prompts/winners/$MONTH.png" js/prompts-data.js
+          git add "img/prompts/winners/$MONTH.png" "img/prompts/winners/$MONTH-story.png" "img/prompts/winners/$MONTH-story.mp4" js/prompts-data.js
           git commit -m "Add $LABEL winners graphic and results"
           git push --force origin "$BRANCH"
           {

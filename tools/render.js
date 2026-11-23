@@ -1,10 +1,12 @@
 // Renders the winners graphic to img/prompts/winners/YYYY-MM.png.
+// Also writes the 1080x1920 story versions next to it: YYYY-MM-story.png and YYYY-MM-story.mp4 (10s).
 // Usage: node tools/render.js <data.json>
 // data.json: { month:'2026-11', monthLabel:'November 2026', tied:false,
 //   winners:[{ place:1, title, name, handles:{instagram,tiktok,facebook,twitter} }, ...] }
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
+const { renderStory } = require('./render-story');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -25,6 +27,27 @@ function handleHtml(h = {}) {
     lines.push(`<span style="display:inline-flex;align-items:center;gap:10px;white-space:nowrap">${ICONS[k]}<span>${esc(text)}</span></span>`);
   }
   return lines.length ? `<span style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">${lines.join('')}</span>` : '';
+}
+
+// Story layout: handles sit under the name, left-aligned, one line per platform.
+function handleHtmlStory(h = {}) {
+  const lines = [];
+  for (const k of ['instagram', 'tiktok', 'twitter', 'facebook']) {
+    if (!h[k]) continue;
+    const text = k === 'facebook' ? h[k] : `@${h[k]}`;
+    lines.push(`<div style="display:flex;align-items:center;gap:12px;white-space:nowrap">${ICONS[k].replace(/width="24" height="24"/, 'width="28" height="28"')}<span>${esc(text)}</span></div>`);
+  }
+  return lines.length ? `<div class="hd">${lines.join('')}</div>` : '';
+}
+
+const GOLD = '#D4AF37', SILVER = '#C0C0C0', BRONZE = '#CD7F32';
+const badge = (text, color) => `<div class="badge" style="color:${color};border-color:${color}80">${text}</div>`;
+
+// Medal, colour and optional badge for slots 1-3. A tie for 1st fills slots 1 and 2; 3rd stays in slot 3.
+function storySlots(tied) {
+  return tied
+    ? [{ medal: 'I', color: GOLD, badge: badge('Tied for 1st', GOLD) }, { medal: 'I', color: GOLD, badge: badge('Tied for 1st', GOLD) }, { medal: 'III', color: BRONZE, badge: badge('3rd Place', BRONZE) }]
+    : [{ medal: 'I', color: GOLD, badge: '' }, { medal: 'II', color: SILVER, badge: '' }, { medal: 'III', color: BRONZE, badge: '' }];
 }
 
 async function main() {
@@ -48,5 +71,22 @@ async function main() {
   await page.screenshot({ path: out, clip: { x: 0, y: 0, width: 1080, height: 1080 } });
   await browser.close();
   console.log('Wrote', out);
+
+  // 1080x1920 story PNG + 10s MP4.
+  const storyTpl = fs.readFileSync(path.join(__dirname, 'winner-graphic', 'template-story.html'), 'utf8');
+  const sv = { monthLabel: data.monthLabel };
+  const slots = storySlots(data.tied);
+  data.winners.slice(0, 3).forEach((w, i) => {
+    sv[`w${i + 1}Title`] = w.title;
+    sv[`w${i + 1}Name`] = w.name;
+    sv[`w${i + 1}Handle`] = handleHtmlStory(w.handles); // already-escaped HTML
+    sv[`w${i + 1}Badge`] = slots[i].badge;              // already-escaped HTML
+    sv[`w${i + 1}Medal`] = slots[i].medal;
+    sv[`w${i + 1}Color`] = slots[i].color;
+  });
+  const storyHtml = storyTpl.replace(/\{\{(\w+)\}\}/g, (_, k) => (/(Handle|Badge)$/.test(k) ? sv[k] || '' : esc(sv[k])));
+  const storyOut = path.join(root, 'img', 'prompts', 'winners', `${data.month}-story`);
+  await renderStory(chromium, storyHtml, storyOut);
+  console.log('Wrote', `${storyOut}.png`, `${storyOut}.mp4`);
 }
 main().catch((e) => { console.error(e); process.exit(1); });
