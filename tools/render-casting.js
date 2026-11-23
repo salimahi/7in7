@@ -7,13 +7,14 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const ordinal = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th');
 
-// '2026-08-24' + '4:30 PM or 6:00 PM' -> 'Aug 24, 4:30 PM or 6:00 PM ET'
+// '2026-11-24' + '7pm' -> 'November 24th at 7pm ET'
 function dateLine(date, times) {
   const [, m, d] = date.split('-').map(Number);
   const t = String(times).trim();
-  return `${MONTHS[m - 1]} ${d}, ${t}${/\bET$/i.test(t) ? '' : ' ET'}`;
+  return `${MONTHS[m - 1]} ${ordinal(d)} at ${t}${/ET$/i.test(t) ? '' : ' ET'}`;
 }
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'call';
 
