@@ -14,7 +14,7 @@ const ordinal = (n) => n + (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st',
 function dateLine(date, times) {
   const [, m, d] = date.split('-').map(Number);
   const t = String(times).trim();
-  return `${MONTHS[m - 1]} ${ordinal(d)} at ${t}${/ET$/i.test(t) ? '' : ' ET'}`;
+  return `${MONTHS[m - 1]} ${ordinal(d)} at ${t}${/\bET$/i.test(t) ? '' : ' ET'}`;
 }
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'call';
 
