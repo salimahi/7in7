@@ -110,9 +110,9 @@ const PROMPTS = [
     image:           'img/prompts/2026-09.jpg',   // e.g. 'img/prompts/2026-07.jpg'
     winnerImage:     'img/prompts/winners/2026-09.png',
    winners: {
-      first:  { name: 'Leah Lopez', title: 'Unwritten', facebook:'LLopezME11' },
-      second: { name: 'Richard Douglas',  title: 'La Brasseria', instagram: 'dougyfresh234' },
-      third:  { name: 'Glenn Gregory',  title: 'Time To Go' },
+      first:  { name: 'Test One', title: 'Step Right Up!', instagram: 'testone' },
+      second: { name: 'Test Two', title: 'Second Script', instagram: 'testtwo' },
+      third:  { name: 'Test Three', title: 'Third Script', instagram: 'testthree', tiktok: 't3' },
     },
   },
 
