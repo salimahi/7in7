@@ -27,7 +27,7 @@ function sync(addFile) {
   const state = JSON.parse(fs.readFileSync(CALLS, 'utf8'));
   if (addFile) {
     const c = JSON.parse(fs.readFileSync(addFile, 'utf8'));
-    state.calls.push({ script: c.script, date: c.date, times: c.times, link: c.link, image: c.image, addedAt: new Date().toISOString() });
+    state.calls.push({ script: c.script, date: c.date, times: c.times, link: c.link, image: c.image, ...(c.responsesSheet ? { responsesSheet: c.responsesSheet } : {}), addedAt: new Date().toISOString() });
     fs.writeFileSync(CALLS, JSON.stringify(state, null, 2) + '\n');
   }
   const { url, call } = desiredUrl(state);
